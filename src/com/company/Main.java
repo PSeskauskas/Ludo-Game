@@ -18,6 +18,8 @@ public class Main extends Application {
 
         Group root = new Group(Board.loadImage());
 
+        root.setScaleY(0.88);
+
         Scene scene = new Scene(root, 800, 800);
         primaryStage.setScene(scene);
         primaryStage.show();
