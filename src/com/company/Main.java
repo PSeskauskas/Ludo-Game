@@ -17,7 +17,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         Group root = new Group(Board.loadImage());
-        root.getChildren().add(Board.loadPiece());
+        for(int i = 0; i < Constants.PLAYER_PIECES; i++) {
+            root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i],Constants.STARTING_POS[1][i],10));
+        }
         root.setScaleY(0.88);
 
         Scene scene = new Scene(root, 800, 800);

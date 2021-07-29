@@ -9,8 +9,8 @@ public class Constants {
 
     public enum COLOURS {BlUE, GREEN, YELLOW, RED}
 
-    private static final int PLAYER_PIECES = 4;
+    protected static final int PLAYER_PIECES = 4;
 
-    public static int [][] STARTING_POS = new int [][] {{90,170,430,510},{150,242,482,574}};
+    public static int [][] STARTING_POS = new int [][] {{105,160,215,160},{160,215,160,105}};
 
 }
