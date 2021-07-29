@@ -1,7 +1,7 @@
 package com.company;
 
 public class Constants {
-    private static final int  NUM_PLAYERS = 4;
+    protected static final int  NUM_PLAYERS = 4;
 
     private static final int MAIN_SQUARES = 52;
 
@@ -10,5 +10,7 @@ public class Constants {
     public enum COLOURS {BlUE, GREEN, YELLOW, RED}
 
     private static final int PLAYER_PIECES = 4;
+
+    public static int [][] STARTING_POS = new int [][] {{90,170,430,510},{150,242,482,574}};
 
 }
