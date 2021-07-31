@@ -17,9 +17,19 @@ public class Main extends Application {
 
     static int numPlayers;
 
+
     public static void main(String[] args) {
+        //makes a board of 52 squares
+        Square[] board = new Square[52];
+        for(int i = 0; i < 52;i++){
+            Square s = new Square(i);
+            board[i] = s;
+
+        }
         launch(args);
+
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -29,7 +39,7 @@ public class Main extends Application {
         Button startGame = new Button("Start Game");
         startGame.setOnAction(event -> {
             numPlayers = GameInit.selectPlayers();
-            startGame.setDisable(true);
+            startGame.setVisible(false);
         });
 
         Group root = new Group(Board.loadImage());

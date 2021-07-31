@@ -5,9 +5,9 @@ import javafx.scene.paint.Paint;
 public class Constants {
     protected static final int  NUM_PLAYERS = 4;
 
-    private static final int MAIN_SQUARES = 52;
+    public static final int MAIN_SQUARES = 52;
 
-    private static final int NUM_MID_SQUARES =7;
+    public static final int NUM_MID_SQUARES =7;
 
     public enum COLOURS {GREEN, BLUE, RED, YELLOW}
 

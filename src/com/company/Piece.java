@@ -7,6 +7,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Piece {
+    public Constants.COLOURS colour;
+
+    int startingIndx;
+    int currentIndx;
+
+    Boolean lapComplete;
+
+
     @FXML public static Circle[] pieces = new Circle[Constants.NUM_PLAYERS * Constants.PLAYER_PIECES];
 
     public static Circle loadPiece(int x, int y, int radius, int circleNumber, Constants.COLOURS color) {

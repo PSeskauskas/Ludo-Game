@@ -12,6 +12,8 @@ public class GameInit {
 
     static int choice;
 
+
+
     public static int selectPlayers() {
         Stage newWindow = new Stage();
         newWindow.setWidth(300);
