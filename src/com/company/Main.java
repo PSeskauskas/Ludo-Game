@@ -36,24 +36,26 @@ public class Main extends Application {
         primaryStage.setTitle("Ludo Game");
         primaryStage.setResizable(false);
 
+        Group root = new Group(Board.loadImage());
+
         Button startGame = new Button("Start Game");
         startGame.setOnAction(event -> {
             numPlayers = GameInit.selectPlayers();
             startGame.setVisible(false);
+            for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
+                if(i < 4) {
+                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.GREEN));
+                } else if(i < 8 && numPlayers > 1) {
+                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.YELLOW));
+                } else if(i < 12 && numPlayers > 2) {
+                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.RED));
+                } else if(numPlayers > 3){
+                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
+                }
+            }
         });
 
-        Group root = new Group(Board.loadImage());
-        for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
-            if(i < 4) {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.GREEN));
-            } else if(i < 8) {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.YELLOW));
-            } else if(i < 12) {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.RED));
-            } else {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
-            }
-        }
+
         if(numPlayers == 0) {
             root.getChildren().add(startGame);
         }
