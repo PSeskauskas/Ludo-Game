@@ -13,9 +13,14 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class Main extends Application {
 
     static int numPlayers;
+    static int[] diceRolls;
+    static int highestRoll;
+    static int startingPlayer;
 
 
     public static void main(String[] args) {
@@ -26,6 +31,9 @@ public class Main extends Application {
             board[i] = s;
 
         }
+        diceRolls = new int[5];
+        highestRoll = 0;
+        startingPlayer = 0;
         launch(args);
 
     }
@@ -53,12 +61,25 @@ public class Main extends Application {
                     root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
                 }
             }
+            for(int i = 1; i <= numPlayers; i++) {
+                diceRolls[i] = (int) (Math.random()*6+1);
+                System.out.println("Player " + i + " rolled a " + diceRolls[i] + "");
+                
+
+                if(diceRolls[i] > highestRoll) {
+                    highestRoll = diceRolls[i];
+                    startingPlayer = i;
+                }
+            }
+            System.out.println("Player " + startingPlayer + " will go first");
         });
 
 
         if(numPlayers == 0) {
             root.getChildren().add(startGame);
         }
+
+
         root.setScaleY(0.88);
 
         Scene scene = new Scene(root, 800, 800);
