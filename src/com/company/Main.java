@@ -12,7 +12,6 @@ public class Main extends Application {
     static int[] diceRolls;
     static Player[] players;
 
-
     public static void main(String[] args) {
         //makes a board of 52 squares
         Square[] board = new Square[52];
@@ -23,7 +22,6 @@ public class Main extends Application {
         }
         launch(args);
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,26 +37,14 @@ public class Main extends Application {
             diceRolls = new int[numPlayers];
             GameInit.setNames(players);
             startGame.setVisible(false);
-            for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
-                if(i < 4) {
-                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.GREEN));
-                } else if(i < 8 && numPlayers > 1) {
-                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.YELLOW));
-                } else if(i < 12 && numPlayers > 2) {
-                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.RED));
-                } else if(numPlayers > 3){
-                    root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
-                }
-            }
+            GameInit.initializePieces(root, numPlayers);
             Dice.rollDice(diceRolls, players);
             System.out.println(players[0].getName() + " will go first");
         });
 
-
         if(numPlayers == 0) {
             root.getChildren().add(startGame);
         }
-
 
         root.setScaleY(0.88);
 

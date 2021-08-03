@@ -1,6 +1,7 @@
 package com.company;
 
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -13,7 +14,19 @@ public class GameInit {
 
     static int choice;
 
-
+    public static void initializePieces(Group root, int numPlayers) {
+        for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
+            if(i < 4) {
+                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.GREEN));
+            } else if(i < 8 && numPlayers > 1) {
+                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.YELLOW));
+            } else if(i < 12 && numPlayers > 2) {
+                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.RED));
+            } else if(numPlayers > 3){
+                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
+            }
+        }
+    }
 
     public static int selectPlayers() {
         Stage newWindow = new Stage();
