@@ -1,6 +1,8 @@
 package com.company;
 
 public class Player {
+    public Player() {}
+
     public String getName() {
         return name;
     }

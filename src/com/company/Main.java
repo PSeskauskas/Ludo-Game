@@ -1,19 +1,10 @@
 package com.company;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-
-import java.util.Random;
 
 public class Main extends Application {
 
@@ -21,6 +12,7 @@ public class Main extends Application {
     static int[] diceRolls;
     static int highestRoll;
     static int startingPlayer;
+    static Player[] players;
 
 
     public static void main(String[] args) {
@@ -49,6 +41,8 @@ public class Main extends Application {
         Button startGame = new Button("Start Game");
         startGame.setOnAction(event -> {
             numPlayers = GameInit.selectPlayers();
+            players = new Player[numPlayers];
+            GameInit.setNames(players);
             startGame.setVisible(false);
             for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
                 if(i < 4) {
