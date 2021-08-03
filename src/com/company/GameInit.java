@@ -74,4 +74,18 @@ public class GameInit {
         newWindow.setScene(scene);
         newWindow.showAndWait();
     }
+
+    public static void sortStartingPlayer(int[] diceRolls, Player[] players, int lo, int hi) {
+        for(int i = 0; i <= hi; i++) {
+            for(int j = i; j > lo; j--) {
+                if(diceRolls[j] > diceRolls[j - 1]) {
+                    Player temp = players[j];
+                    players[j] = players[j - 1];
+                    players[j - 1] = temp;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
 }

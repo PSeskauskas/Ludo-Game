@@ -6,12 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+
 public class Main extends Application {
 
     static int numPlayers;
     static int[] diceRolls;
-    static int highestRoll;
-    static int startingPlayer;
     static Player[] players;
 
 
@@ -23,11 +23,7 @@ public class Main extends Application {
             board[i] = s;
 
         }
-        diceRolls = new int[5];
-        highestRoll = 0;
-        startingPlayer = 0;
         launch(args);
-
     }
 
 
@@ -42,6 +38,7 @@ public class Main extends Application {
         startGame.setOnAction(event -> {
             numPlayers = GameInit.selectPlayers();
             players = new Player[numPlayers];
+            diceRolls = new int[numPlayers];
             GameInit.setNames(players);
             startGame.setVisible(false);
             for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
@@ -55,17 +52,12 @@ public class Main extends Application {
                     root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
                 }
             }
-            for(int i = 1; i <= numPlayers; i++) {
+            for(int i = 0; i < numPlayers; i++) {
                 diceRolls[i] = (int) (Math.random()*6+1);
-                System.out.println("Player " + i + " rolled a " + diceRolls[i] + "");
-                
-
-                if(diceRolls[i] > highestRoll) {
-                    highestRoll = diceRolls[i];
-                    startingPlayer = i;
-                }
+                System.out.println(players[i].getName() + " rolled a " + diceRolls[i] + "");
             }
-            System.out.println("Player " + startingPlayer + " will go first");
+            GameInit.sortStartingPlayer(diceRolls, players, 0, players.length - 1);
+            System.out.println(players[0].getName() + " will go first");
         });
 
 
