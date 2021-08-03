@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.util.Arrays;
-
 public class Main extends Application {
 
     static int numPlayers;
@@ -52,11 +50,7 @@ public class Main extends Application {
                     root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
                 }
             }
-            for(int i = 0; i < numPlayers; i++) {
-                diceRolls[i] = (int) (Math.random()*6+1);
-                System.out.println(players[i].getName() + " rolled a " + diceRolls[i] + "");
-            }
-            GameInit.sortStartingPlayer(diceRolls, players, 0, players.length - 1);
+            Dice.rollDice(diceRolls, players);
             System.out.println(players[0].getName() + " will go first");
         });
 
