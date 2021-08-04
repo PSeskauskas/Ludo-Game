@@ -3,10 +3,7 @@ package com.company;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -111,14 +108,14 @@ public class GameInit {
         }
     }
 
-    public static void gameRoll(int[] diceRolls,Player[] players) {
+    public static void gameRoll(int[] diceRolls, Player[] players, ListView listView) {
         for(int i = 0; i < players.length;i++) {
             diceRolls[i] = (int) (Math.random()*6+1);
             if(diceRolls[i] == 6) {
-                System.out.println(players[i].getName() + " has rolled a " + diceRolls[i] + ". A piece has been brought out");
+                listView.getItems().add(players[i].getName() + " has rolled a " + diceRolls[i] + ". A piece has been brought out");
                 break;
             } else if(diceRolls[i] != 6) {
-                System.out.println(players[i].getName() + ", you didn't roll a 6! Try again");
+                listView.getItems().add(players[i].getName() + ", you didn't roll a 6! Try again");
             }
         }
     }
