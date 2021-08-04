@@ -9,7 +9,7 @@ public class Constants {
 
     public static final int NUM_MID_SQUARES =7;
 
-    public enum COLOURS {GREEN, BLUE, RED, YELLOW}
+    public enum COLOURS {GREEN, YELLOW, RED, BLUE}
 
     protected static final int PLAYER_PIECES = 4;
 

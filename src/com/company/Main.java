@@ -41,6 +41,9 @@ public class Main extends Application {
             GameInit.initializePieces(root, numPlayers);
             Dice.rollDice(diceRolls, players);
             System.out.println(players[0].getName() + " will go first");
+            for (Player player : players) {
+                System.out.println(player.getColor());
+            }
         });
 
         Button rollDice = new Button("Roll Dice");

@@ -71,6 +71,15 @@ public class GameInit {
             textFields[i] = new TextField();
             layout.getChildren().addAll(label, textFields[i]);
         }
+        int j = 0;
+        for(Constants.COLOURS colours : Constants.COLOURS.values()) {
+            if(j < players.length) {
+                players[j].setColor(colours);
+                j++;
+            } else {
+                break;
+            }
+        }
 
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
@@ -108,11 +117,10 @@ public class GameInit {
             if(diceRolls[i] == 6) {
                 System.out.println(players[i].getName() + " has rolled a " + diceRolls[i] + ". A piece has been brought out");
                 break;
-            }
-            if(diceRolls[i] != 6) {
+            } else if(diceRolls[i] != 6) {
                 System.out.println(players[i].getName() + ", you didn't roll a 6! Try again");
-            }
             }
         }
     }
+}
 
