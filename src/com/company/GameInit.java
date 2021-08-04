@@ -101,4 +101,18 @@ public class GameInit {
             }
         }
     }
-}
+
+    public static void gameRoll(int[] diceRolls,Player[] players) {
+        for(int i = 0; i < players.length;i++) {
+            diceRolls[i] = (int) (Math.random()*6+1);
+            if(diceRolls[i] == 6) {
+                System.out.println(players[i].getName() + " has rolled a " + diceRolls[i] + ". A piece has been brought out");
+                break;
+            }
+            if(diceRolls[i] != 6) {
+                System.out.println(players[i].getName() + ", you didn't roll a 6! Try again");
+            }
+            }
+        }
+    }
+

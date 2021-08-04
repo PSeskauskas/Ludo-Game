@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -42,9 +43,17 @@ public class Main extends Application {
             System.out.println(players[0].getName() + " will go first");
         });
 
+        Button rollDice = new Button("Roll Dice");
+        rollDice.setOnAction(event -> {
+            GameInit.gameRoll(diceRolls,players);
+        });
+        VBox vbox = new VBox(10);
+
         if(numPlayers == 0) {
-            root.getChildren().add(startGame);
+            vbox.getChildren().add(startGame);
+            vbox.getChildren().add(rollDice);
         }
+        root.getChildren().add(vbox);
 
         root.setScaleY(0.88);
 
