@@ -19,16 +19,66 @@ public class Main extends Application {
     static int[] diceRolls;
     static Player[] players;
     static int count;
+    static Square[] board = new Square[52];
 
 
     public static void main(String[] args) {
         //makes a board of 52 squares
-        Square[] board = new Square[52];
-        for(int i = 0; i < 52;i++){
-            Square s = new Square(i);
-            board[i] = s;
 
+        int start_x = 345;
+        int start_y = -23;
+        for(int i = 0; i < 52;i++){
+
+            if(i < 6) {
+                start_y += 55;
+            }
+            if(i == 6){
+                start_y += 55;
+            }
+            if(i >=6 && i < 12) {
+                start_x -= 55;
+            }
+            if(i >= 12 && i < 14){
+                start_y += 55;
+            }
+            if(i >= 14 && i < 19){
+                start_x += 55;
+            }
+            if(i == 19){
+                start_x += 55;
+            }
+            if(i >= 19 && i < 25){
+                start_y += 55;
+            }
+            if(i >= 25 && i < 27){
+                start_x += 55;
+            }
+            if(i >= 27 && i < 33){
+                start_y -= 55;
+            }
+            if(i == 33){
+                start_x += 55;
+            }
+            if(i >= 33 && i < 38){
+                start_x += 55;
+            }
+            if(i >= 38 && i < 40){
+                start_y -= 55;
+            }
+            if(i >= 41 && i < 47){
+                start_x -= 55;
+            }
+            if(i == 47){
+                start_y -= 55;
+            }
+            if(i >= 47 && i < 52){
+                start_y -= 55;
+            }
+
+            Square s = new Square(i, start_x, start_y);
+            board[i] = s;
         }
+
         launch(args);
     }
 
@@ -38,6 +88,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         Group root = new Group(Board.loadImage());
+        for(int i = 0; i < 52;i++) {
+            root.getChildren().add(Piece.loadPiece(board[i].getX_coord(), board[i].getY_cord(), 10, 2, Constants.COLOURS.BLUE));
+        }
 
         ListView listView = new ListView();
 
