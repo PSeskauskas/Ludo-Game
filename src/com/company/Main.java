@@ -18,6 +18,8 @@ public class Main extends Application {
     static int numPlayers;
     static int[] diceRolls;
     static Player[] players;
+    static int count;
+
 
     public static void main(String[] args) {
         //makes a board of 52 squares
@@ -52,10 +54,17 @@ public class Main extends Application {
             listView.getItems().add(players[0].getName() + " will go first");
         });
 
+        count = 0;
         Button rollDice = new Button("Roll Dice");
         rollDice.setAlignment(Pos.CENTER);
         rollDice.setOnAction(event -> {
-            GameInit.gameRoll(diceRolls,players,listView);
+            GameInit.gameRoll(diceRolls, players[count], listView);
+            if(count < numPlayers) {
+                count++;
+            }
+            if(count == numPlayers) {
+                count = 0;
+            }
         });
         VBox vbox = new VBox(20);
         BackgroundFill backgroundFill = new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY);

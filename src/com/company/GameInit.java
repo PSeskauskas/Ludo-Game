@@ -108,16 +108,14 @@ public class GameInit {
         }
     }
 
-    public static void gameRoll(int[] diceRolls, Player[] players, ListView listView) {
-        for(int i = 0; i < players.length;i++) {
-            diceRolls[i] = (int) (Math.random()*6+1);
-            if(diceRolls[i] == 6) {
-                listView.getItems().add(players[i].getName() + " has rolled a " + diceRolls[i] + ". A piece has been brought out");
-                break;
-            } else if(diceRolls[i] != 6) {
-                listView.getItems().add(players[i].getName() + ", you didn't roll a 6! Try again");
+    public static void gameRoll(int[] diceRolls, Player player, ListView listView) {
+            diceRolls[0] = (int) (Math.random()*6+1);
+            if(diceRolls[0] == 6) {
+                listView.getItems().add(player.getName() + " has rolled a " + diceRolls[0] + ". A piece has been brought out");
+            } else if(diceRolls[0] != 6) {
+                listView.getItems().add(player.getName() + " has rolled a " + diceRolls[0] + ".");
             }
         }
     }
-}
+
 
