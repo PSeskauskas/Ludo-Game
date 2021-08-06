@@ -34,7 +34,7 @@ public class Main extends Application {
             board[i] = s;
             i++;
         }
-        for(int j = 0; j < 6; j++) {
+        for(int j = 5; j >= 0; j--) {
             x = Constants.WHITE_SQUARES_X[6];
             y = Constants.WHITE_SQUARES_Y[j];
             s = new Square(i, x, y);
@@ -65,7 +65,7 @@ public class Main extends Application {
         s = new Square(i, x, y);
         board[i] = s;
         i++;
-        for(int j = 14; j > 8; j--) {
+        for(int j = 14; j >= 9; j--) {
             x = Constants.WHITE_SQUARES_X[j];
             y = Constants.WHITE_SQUARES_Y[8];
             s = new Square(i, x, y);
@@ -84,14 +84,14 @@ public class Main extends Application {
         s = new Square(i, x, y);
         board[i] = s;
         i++;
-        for(int j = 9; j < 15; j++) {
+        for(int j = 14; j >= 9; j--) {
             x = Constants.WHITE_SQUARES_X[6];
             y = Constants.WHITE_SQUARES_Y[j];
             s = new Square(i, x, y);
             board[i] = s;
             i++;
         }
-        for(int j = 0; j < 6; j++) {
+        for(int j = 5; j >= 0; j--) {
             x = Constants.WHITE_SQUARES_X[j];
             y = Constants.WHITE_SQUARES_Y[8];
             s = new Square(i, x, y);
