@@ -4,28 +4,28 @@ public class Square {
 
     private int indx;
 
-    public int getX_coord() {
+    public double getX_coord() {
         return x_coord;
     }
 
-    public void setX_coord(int x_coord) {
+    public void setX_coord(double x_coord) {
         this.x_coord = x_coord;
     }
 
     //coordinates for javafx
-    private int x_coord;
+    private double x_coord;
 
-    public int getY_cord() {
+    public double getY_cord() {
         return y_cord;
     }
 
-    public void setY_cord(int y_cord) {
+    public void setY_cord(double y_cord) {
         this.y_cord = y_cord;
     }
 
-    private int y_cord;
+    private double y_cord;
 
-    public Square(int i,int x, int y){
+    public Square(int i,double x, double y){
         indx = i;
         x_coord = x;
         y_cord = y;

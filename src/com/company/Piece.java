@@ -17,7 +17,7 @@ public class Piece {
 
     @FXML public static Circle[] pieces = new Circle[Constants.NUM_PLAYERS * Constants.PLAYER_PIECES];
 
-    public static Circle loadPiece(int x, int y, int radius, int circleNumber, Constants.COLOURS color) {
+    public static Circle loadPiece(double x, double y, int radius, int circleNumber, Constants.COLOURS color) {
         pieces[circleNumber] = new Circle(x, y, radius);
         if(color == Constants.COLOURS.GREEN) {
             pieces[circleNumber].setFill(Color.GREEN);

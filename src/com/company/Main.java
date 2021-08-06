@@ -1,5 +1,6 @@
 package com.company;
 
+import com.sun.org.apache.bcel.internal.Const;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,62 +24,84 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //makes a board of 52 squares
-
-        int start_x = 345;
-        int start_y = -23;
-        for(int i = 0; i < 52;i++){
-
-            if(i < 6) {
-                start_y += 55;
-            }
-            if(i == 6){
-                start_y += 55;
-            }
-            if(i >=6 && i < 12) {
-                start_x -= 55;
-            }
-            if(i >= 12 && i < 14){
-                start_y += 55;
-            }
-            if(i >= 14 && i < 19){
-                start_x += 55;
-            }
-            if(i == 19){
-                start_x += 55;
-            }
-            if(i >= 19 && i < 25){
-                start_y += 55;
-            }
-            if(i >= 25 && i < 27){
-                start_x += 55;
-            }
-            if(i >= 27 && i < 33){
-                start_y -= 55;
-            }
-            if(i == 33){
-                start_x += 55;
-            }
-            if(i >= 33 && i < 38){
-                start_x += 55;
-            }
-            if(i >= 38 && i < 40){
-                start_y -= 55;
-            }
-            if(i >= 41 && i < 47){
-                start_x -= 55;
-            }
-            if(i == 47){
-                start_y -= 55;
-            }
-            if(i >= 47 && i < 52){
-                start_y -= 55;
-            }
-
-            Square s = new Square(i, start_x, start_y);
+        int i = 0;
+        double x, y;
+        Square s;
+        for(int j = 0; j < 6; j++) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[6];
+            s = new Square(i, x, y);
             board[i] = s;
+            i++;
         }
-
+        for(int j = 0; j < 6; j++) {
+            x = Constants.WHITE_SQUARES_X[6];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[7];
+        y = Constants.WHITE_SQUARES_Y[0];
+        s = new Square(i, x, y);
+        board[i] = s;
+        i++;
+        for(int j = 0; j < 6; j++) {
+            x = Constants.WHITE_SQUARES_X[8];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 9; j < 15; j++) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[6];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[14];
+        y = Constants.WHITE_SQUARES_Y[7];
+        s = new Square(i, x, y);
+        board[i] = s;
+        i++;
+        for(int j = 14; j > 8; j--) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[8];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 9; j < 15; j++) {
+            x = Constants.WHITE_SQUARES_X[8];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[7];
+        y = Constants.WHITE_SQUARES_Y[14];
+        s = new Square(i, x, y);
+        board[i] = s;
+        i++;
+        for(int j = 9; j < 15; j++) {
+            x = Constants.WHITE_SQUARES_X[6];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 0; j < 6; j++) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[8];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[0];
+        y = Constants.WHITE_SQUARES_Y[7];
+        s = new Square(i, x, y);
+        board[i] = s;
         launch(args);
     }
 
