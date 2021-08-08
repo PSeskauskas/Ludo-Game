@@ -5,7 +5,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import static com.company.Main.board;
 
 public class GameInit {
 
@@ -108,13 +111,9 @@ public class GameInit {
         }
     }
 
-    public static void gameRoll(int[] diceRolls, Player player, ListView listView) {
+    public static int gameRoll(int[] diceRolls, Player player, ListView listView) {
             diceRolls[0] = (int) (Math.random()*6+1);
-            if(diceRolls[0] == 6) {
-                listView.getItems().add(player.getName() + " has rolled a " + diceRolls[0] + ". A piece has been brought out");
-            } else if(diceRolls[0] != 6) {
-                listView.getItems().add(player.getName() + " has rolled a " + diceRolls[0] + ".");
-            }
+            return diceRolls[0];
         }
     }
 

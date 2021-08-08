@@ -111,9 +111,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         Group root = new Group(Board.loadImage());
-        for(int i = 0; i < 52;i++) {
+        /*for(int i = 0; i < 52;i++) {
             root.getChildren().add(Piece.loadPiece(board[i].getX_coord(), board[i].getY_cord(), 10, 2, Constants.COLOURS.BLUE));
-        }
+        }*/
 
         ListView listView = new ListView();
 
@@ -134,7 +134,24 @@ public class Main extends Application {
         Button rollDice = new Button("Roll Dice");
         rollDice.setAlignment(Pos.CENTER);
         rollDice.setOnAction(event -> {
-            GameInit.gameRoll(diceRolls, players[count], listView);
+            int res = GameInit.gameRoll(diceRolls, players[count], listView);
+            if(res == 6) {
+                listView.getItems().add(players[count].getName() + " has rolled a " + res + ". A piece has been brought out");
+                if(players[count].getColor() == Color.GREEN) {
+                    root.getChildren().add(Piece.loadPiece(board[1].getX_coord(), board[1].getY_cord(), 10, 2, Constants.COLOURS.GREEN));
+                }
+                if(players[count].getColor() == Color.RED) {
+                    root.getChildren().add(Piece.loadPiece(board[14].getX_coord(), board[14].getY_cord(), 10, 2, Constants.COLOURS.RED));
+                }
+                if(players[count].getColor() == Color.BLUE) {
+                    root.getChildren().add(Piece.loadPiece(board[27].getX_coord(), board[27].getY_cord(), 10, 2, Constants.COLOURS.BLUE));
+                }
+                if(players[count].getColor() == Color.YELLOW) {
+                    root.getChildren().add(Piece.loadPiece(board[40].getX_coord(), board[40].getY_cord(), 10, 2, Constants.COLOURS.YELLOW));
+                }
+            } else if(res != 6) {
+                listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
+            }
             if(count < numPlayers) {
                 count++;
             }
