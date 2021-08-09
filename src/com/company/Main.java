@@ -116,6 +116,9 @@ public class Main extends Application {
         /*for(int i = 0; i < 52;i++) {
             root.getChildren().add(Piece.loadPiece(board[i].getX_coord(), board[i].getY_cord(), 10, 2, Constants.COLOURS.BLUE));
         }*/
+        for(int i = 0; i < 16; i++) {
+            inPlay[i] = false;
+        }
 
         ListView listView = new ListView();
 
