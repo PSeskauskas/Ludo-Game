@@ -14,20 +14,17 @@ public class Piece {
 
     Boolean lapComplete;
 
-
-    @FXML public static Circle[] pieces = new Circle[Constants.NUM_PLAYERS * Constants.PLAYER_PIECES];
-
-    public static Circle loadPiece(double x, double y, int radius, int circleNumber, Constants.COLOURS color) {
-        pieces[circleNumber] = new Circle(x, y, radius);
+    public static Circle loadPiece(double x, double y, int radius, Constants.COLOURS color) {
+        Circle circle = new Circle(x, y, radius);
         if(color == Constants.COLOURS.GREEN) {
-            pieces[circleNumber].setFill(Color.GREEN);
+            circle.setFill(Color.GREEN);
         } else if(color == Constants.COLOURS.BLUE) {
-            pieces[circleNumber].setFill(Color.CYAN);
+            circle.setFill(Color.CYAN);
         } else if(color == Constants.COLOURS.RED) {
-            pieces[circleNumber].setFill(Color.DARKRED);
+            circle.setFill(Color.DARKRED);
         } else if(color == Constants.COLOURS.YELLOW) {
-            pieces[circleNumber].setFill(Color.ORANGE);
+            circle.setFill(Color.ORANGE);
         }
-        return pieces[circleNumber];
+        return circle;
     }
 }

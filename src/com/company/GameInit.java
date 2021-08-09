@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import static com.company.Main.board;
@@ -14,16 +15,20 @@ public class GameInit {
 
     static int choice;
 
-    public static void initializePieces(Group root, int numPlayers) {
+    public static void initializePieces(Group root, int numPlayers, Circle[] circles) {
         for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
             if(i < 4) {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.GREEN));
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.GREEN);
+                root.getChildren().add(circles[i]);
             } else if(i < 8 && numPlayers > 1) {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.YELLOW));
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.YELLOW);
+                root.getChildren().add(circles[i]);
             } else if(i < 12 && numPlayers > 2) {
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.RED));
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.RED);
+                root.getChildren().add(circles[i]);
             } else if(numPlayers > 3){
-                root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, i, Constants.COLOURS.BLUE));
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.BLUE);
+                root.getChildren().add(circles[i]);
             }
         }
     }

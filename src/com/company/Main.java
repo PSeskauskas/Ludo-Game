@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -21,7 +22,7 @@ public class Main extends Application {
     static Player[] players;
     static int count;
     static Square[] board = new Square[52];
-
+    static Circle[] circles = new Circle[16];
 
     public static void main(String[] args) {
         int i = 0;
@@ -125,7 +126,7 @@ public class Main extends Application {
             diceRolls = new int[numPlayers];
             GameInit.setNames(players);
             startGame.setVisible(false);
-            GameInit.initializePieces(root, numPlayers);
+            GameInit.initializePieces(root, numPlayers, circles);
             Dice.rollDice(diceRolls, players, listView);
             listView.getItems().add(players[0].getName() + " will go first");
         });
@@ -138,16 +139,20 @@ public class Main extends Application {
             if(res == 6) {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ". A piece has been brought out");
                 if(players[count].getColor() == Color.GREEN) {
-                    root.getChildren().add(Piece.loadPiece(board[1].getX_coord(), board[1].getY_cord(), 10, 2, Constants.COLOURS.GREEN));
+                    circles[0].setCenterX(board[1].getX_coord());
+                    circles[0].setCenterY(board[1].getY_cord());
                 }
                 if(players[count].getColor() == Color.RED) {
-                    root.getChildren().add(Piece.loadPiece(board[14].getX_coord(), board[14].getY_cord(), 10, 2, Constants.COLOURS.RED));
+                    circles[8].setCenterX(board[14].getX_coord());
+                    circles[8].setCenterY(board[14].getY_cord());
                 }
                 if(players[count].getColor() == Color.BLUE) {
-                    root.getChildren().add(Piece.loadPiece(board[27].getX_coord(), board[27].getY_cord(), 10, 2, Constants.COLOURS.BLUE));
+                    circles[12].setCenterX(board[27].getX_coord());
+                    circles[12].setCenterY(board[27].getY_cord());
                 }
                 if(players[count].getColor() == Color.YELLOW) {
-                    root.getChildren().add(Piece.loadPiece(board[40].getX_coord(), board[40].getY_cord(), 10, 2, Constants.COLOURS.YELLOW));
+                    circles[4].setCenterX(board[40].getX_coord());
+                    circles[4].setCenterY(board[40].getY_cord());
                 }
             } else if(res != 6) {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
