@@ -15,9 +15,21 @@ public class GameInit {
 
     static int choice;
 
-    public static void initializePieces(Group root, int numPlayers, Piece[] pieces) {
-        for(int i = 0; i < numPlayers * Constants.PLAYER_PIECES; i++) {
-            root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, pieces[i].playerColour));
+    public static void initializePieces(Group root, int numPlayers, Circle[] circles) {
+        for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
+            if(i < 4) {
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.GREEN);
+                root.getChildren().add(circles[i]);
+            } else if(i < 8 && numPlayers > 1) {
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.YELLOW);
+                root.getChildren().add(circles[i]);
+            } else if(i < 12 && numPlayers > 2) {
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.RED);
+                root.getChildren().add(circles[i]);
+            } else if(numPlayers > 3){
+                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.BLUE);
+                root.getChildren().add(circles[i]);
+            }
         }
     }
 
@@ -107,6 +119,89 @@ public class GameInit {
     public static int gameRoll() {
             return (int) (Math.random()*6+1);
         }
+
+    public static Square[] initializeSquares() {
+        Square[] board = new Square[52];
+        int i = 0;
+        double x, y;
+        Square s;
+        for(int j = 0; j < 6; j++) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[6];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 5; j >= 0; j--) {
+            x = Constants.WHITE_SQUARES_X[6];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[7];
+        y = Constants.WHITE_SQUARES_Y[0];
+        s = new Square(i, x, y);
+        board[i] = s;
+        i++;
+        for(int j = 0; j < 6; j++) {
+            x = Constants.WHITE_SQUARES_X[8];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 9; j < 15; j++) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[6];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[14];
+        y = Constants.WHITE_SQUARES_Y[7];
+        s = new Square(i, x, y);
+        board[i] = s;
+        i++;
+        for(int j = 14; j >= 9; j--) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[8];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 9; j < 15; j++) {
+            x = Constants.WHITE_SQUARES_X[8];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[7];
+        y = Constants.WHITE_SQUARES_Y[14];
+        s = new Square(i, x, y);
+        board[i] = s;
+        i++;
+        for(int j = 14; j >= 9; j--) {
+            x = Constants.WHITE_SQUARES_X[6];
+            y = Constants.WHITE_SQUARES_Y[j];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        for(int j = 5; j >= 0; j--) {
+            x = Constants.WHITE_SQUARES_X[j];
+            y = Constants.WHITE_SQUARES_Y[8];
+            s = new Square(i, x, y);
+            board[i] = s;
+            i++;
+        }
+        x = Constants.WHITE_SQUARES_X[0];
+        y = Constants.WHITE_SQUARES_Y[7];
+        s = new Square(i, x, y);
+        board[i] = s;
+        return board;
     }
+}
 
 
