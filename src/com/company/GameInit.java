@@ -116,9 +116,8 @@ public class GameInit {
         }
     }
 
-    public static int gameRoll(int[] diceRolls, Player player, ListView listView) {
-            diceRolls[0] = (int) (Math.random()*6+1);
-            return diceRolls[0];
+    public static int gameRoll() {
+            return (int) (Math.random()*6+1);
         }
     }
 
