@@ -15,21 +15,9 @@ public class GameInit {
 
     static int choice;
 
-    public static void initializePieces(Group root, int numPlayers, Circle[] circles) {
-        for(int i = 0; i < Constants.PLAYER_PIECES * Constants.NUM_PLAYERS; i++) {
-            if(i < 4) {
-                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.GREEN);
-                root.getChildren().add(circles[i]);
-            } else if(i < 8 && numPlayers > 1) {
-                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.YELLOW);
-                root.getChildren().add(circles[i]);
-            } else if(i < 12 && numPlayers > 2) {
-                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.RED);
-                root.getChildren().add(circles[i]);
-            } else if(numPlayers > 3){
-                circles[i] = Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, Constants.COLOURS.BLUE);
-                root.getChildren().add(circles[i]);
-            }
+    public static void initializePieces(Group root, int numPlayers, Piece[] pieces) {
+        for(int i = 0; i < numPlayers * Constants.PLAYER_PIECES; i++) {
+            root.getChildren().add(Piece.loadPiece(Constants.STARTING_POS[0][i], Constants.STARTING_POS[1][i], 10, pieces[i].playerColour));
         }
     }
 

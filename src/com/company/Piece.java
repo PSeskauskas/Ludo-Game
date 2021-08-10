@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Piece {
+    private static Circle circle;
     public Constants.COLOURS colour;
 
     int startingIndx;
@@ -20,9 +21,11 @@ public class Piece {
         currentIndx = startingIndx;
     }
 
-    private void  movePiece(int roll) {
+    public void movePiece(int roll) {
         if (currentIndx + roll < 52) {
-            currentIndx += roll;
+            currentIndx = roll;
+            circle.setCenterX(Main.board[currentIndx].getX_coord());
+            circle.setCenterY(Main.board[currentIndx].getY_cord());
         } else {
             while (currentIndx < 52) {
                 currentIndx++;
@@ -37,7 +40,7 @@ public class Piece {
     Boolean lapComplete;
 
     public static Circle loadPiece(double x, double y, int radius, Constants.COLOURS color) {
-        Circle circle = new Circle(x, y, radius);
+        circle = new Circle(x, y, radius);
         if(color == Constants.COLOURS.GREEN) {
             circle.setFill(Color.GREEN);
         } else if(color == Constants.COLOURS.BLUE) {
