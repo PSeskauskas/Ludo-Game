@@ -22,6 +22,7 @@ public class Main extends Application {
     static Square[] board;
     static Circle[] circles = new Circle[16];
     static Boolean[] inPlay = new Boolean[16];
+    static int[] indexes = new int[circles.length];
 
     public static void main(String[] args) {
         launch(args);
@@ -37,6 +38,7 @@ public class Main extends Application {
         Group root = new Group(Board.loadImage());
         for(int i = 0; i < 16; i++) {
             inPlay[i] = false;
+            indexes[i] = -1;
         }
 
         ListView listView = new ListView();
@@ -61,48 +63,120 @@ public class Main extends Application {
             int res = GameInit.gameRoll();
             if(res == 6) {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ". A piece has been brought out");
-                if(players[count].getColor() == Color.GREEN) {
-                    for(int i = 0; i < Constants.PLAYER_PIECES; i++) {
-                        if(!inPlay[i]) {
-                            circles[i].setCenterX(board[Constants.GREEN_START_SQUARE].getX_coord());
-                            circles[i].setCenterY(board[Constants.GREEN_START_SQUARE].getY_cord());
-                            inPlay[i] = true;
-                            break;
-                        }
-                    }
-                }
-                if(players[count].getColor() == Color.RED) {
-                    for(int i = 8; i < Constants.PLAYER_PIECES * 3; i++) {
-                        if(!inPlay[i]) {
-                            circles[i].setCenterX(board[Constants.RED_START_SQUARE].getX_coord());
-                            circles[i].setCenterY(board[Constants.RED_START_SQUARE].getY_cord());
-                            inPlay[i] = true;
-                            break;
-                        }
-                    }
-                }
-                if(players[count].getColor() == Color.BLUE) {
-                    for(int i = 12; i < Constants.PLAYER_PIECES * 4; i++) {
-                        if(!inPlay[i]) {
-                            circles[i].setCenterX(board[Constants.BLUE_START_SQUARE].getX_coord());
-                            circles[i].setCenterY(board[Constants.BLUE_START_SQUARE].getY_cord());
-                            inPlay[i] = true;
-                            break;
-                        }
-                    }
-                }
-                if(players[count].getColor() == Color.YELLOW) {
-                    for(int i = 4; i < Constants.PLAYER_PIECES * 2; i++) {
-                        if(!inPlay[i]) {
-                            circles[i].setCenterX(board[Constants.YELLOW_START_SQUARE].getX_coord());
-                            circles[i].setCenterY(board[Constants.YELLOW_START_SQUARE].getY_cord());
-                            inPlay[i] = true;
-                            break;
-                        }
-                    }
-                }
-            } else if(res != 6) {
+            } else {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
+            }
+            if(players[count].getColor() == Color.GREEN) {
+                for(int i = 0; i < Constants.PLAYER_PIECES; i++) {
+                    if(inPlay[i]) {
+                        if (indexes[i] + res < 52) {
+                            indexes[i] += res;
+                        } else {
+                            while (indexes[i] < 52) {
+                                indexes[i]++;
+                                res--;
+                            }
+                            indexes[i] = 0;
+                            indexes[i] += res;
+                        }
+                        circles[i].setCenterX(board[indexes[i]].getX_coord());
+                        circles[i].setCenterY(board[indexes[i]].getY_cord());
+                        break;
+                    }
+                    if(!inPlay[i]) {
+                        if(res == 6) {
+                            indexes[i] = Constants.GREEN_START_SQUARE;
+                            circles[i].setCenterX(board[indexes[i]].getX_coord());
+                            circles[i].setCenterY(board[indexes[i]].getY_cord());
+                            inPlay[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(players[count].getColor() == Color.RED) {
+                for(int i = 8; i < Constants.PLAYER_PIECES * 3; i++) {
+                    if(inPlay[i]) {
+                        if (indexes[i] + res < 52) {
+                            indexes[i] += res;
+                        } else {
+                            while (indexes[i] < 52) {
+                                indexes[i]++;
+                                res--;
+                            }
+                            indexes[i] = 0;
+                            indexes[i] += res;
+                        }
+                        circles[i].setCenterX(board[indexes[i]].getX_coord());
+                        circles[i].setCenterY(board[indexes[i]].getY_cord());
+                        break;
+                    }
+                    if(!inPlay[i]) {
+                        if(res == 6) {
+                            indexes[i] = Constants.RED_START_SQUARE;
+                            circles[i].setCenterX(board[indexes[i]].getX_coord());
+                            circles[i].setCenterY(board[indexes[i]].getY_cord());
+                            inPlay[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(players[count].getColor() == Color.BLUE) {
+                for(int i = 12; i < Constants.PLAYER_PIECES * 4; i++) {
+                    if(inPlay[i]) {
+                        if (indexes[i] + res < 52) {
+                            indexes[i] += res;
+                        } else {
+                            while (indexes[i] < 52) {
+                                indexes[i]++;
+                                res--;
+                            }
+                            indexes[i] = 0;
+                            indexes[i] += res;
+                        }
+                        circles[i].setCenterX(board[indexes[i]].getX_coord());
+                        circles[i].setCenterY(board[indexes[i]].getY_cord());
+                        break;
+                    }
+                    if(!inPlay[i]) {
+                        if(res == 6) {
+                            indexes[i] = Constants.BLUE_START_SQUARE;
+                            circles[i].setCenterX(board[indexes[i]].getX_coord());
+                            circles[i].setCenterY(board[indexes[i]].getY_cord());
+                            inPlay[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(players[count].getColor() == Color.YELLOW) {
+                for(int i = 4; i < Constants.PLAYER_PIECES * 2; i++) {
+                    if(inPlay[i]) {
+                        if (indexes[i] + res < 52) {
+                            indexes[i] += res;
+                        } else {
+                            while (indexes[i] < 52) {
+                                indexes[i]++;
+                                res--;
+                            }
+                            indexes[i] = 0;
+                            indexes[i] += res;
+                        }
+                        circles[i].setCenterX(board[indexes[i]].getX_coord());
+                        circles[i].setCenterY(board[indexes[i]].getY_cord());
+                        break;
+                    }
+                    if(!inPlay[i]) {
+                        if(res == 6) {
+                            indexes[i] = Constants.YELLOW_START_SQUARE;
+                            circles[i].setCenterX(board[indexes[i]].getX_coord());
+                            circles[i].setCenterY(board[indexes[i]].getY_cord());
+                            inPlay[i] = true;
+                            break;
+                        }
+                    }
+                }
             }
             if(count < numPlayers) {
                 count++;
