@@ -42,6 +42,15 @@ public class Main extends Application {
         }
 
         ListView listView = new ListView();
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER);
+        TextField inputBox = new TextField();
+        Button submitButton = new Button("Submit");
+        submitButton.setOnAction(event -> {
+            listView.getItems().add(inputBox.getText());
+            inputBox.setText("");
+        });
+        hbox.getChildren().addAll(inputBox, submitButton);
 
         Button startGame = new Button("Start Game");
         startGame.setAlignment(Pos.CENTER);
@@ -62,7 +71,21 @@ public class Main extends Application {
         rollDice.setOnAction(event -> {
             int res = GameInit.gameRoll();
             if(res == 6) {
-                listView.getItems().add(players[count].getName() + " has rolled a " + res + ". A piece has been brought out");
+                listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
+                listView.getItems().add("Enter 1 to bring a piece out or 2 to move a current piece");
+                String choice = inputBox.getText();
+                //rollDice.setDisable(true);
+                if(choice == "1") {
+                    //
+                    rollDice.setDisable(false);
+                }
+                if(choice == "2") {
+                    //
+                    rollDice.setDisable(false);
+                }
+                else {
+                    listView.getItems().add("Please enter 1 or 2");
+                }
             } else {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
             }
@@ -178,7 +201,7 @@ public class Main extends Application {
                     }
                 }
             }
-            if(count < numPlayers) {
+            if(count < numPlayers && res != 6) {
                 count++;
             }
             if(count == numPlayers) {
@@ -198,15 +221,6 @@ public class Main extends Application {
         listView.setMinWidth(400);
         listView.setMinHeight(400);
 
-        HBox hbox = new HBox(10);
-        hbox.setAlignment(Pos.CENTER);
-        TextField inputBox = new TextField();
-        Button submitButton = new Button("Submit");
-        submitButton.setOnAction(event -> {
-            listView.getItems().add(inputBox.getText());
-            inputBox.setText("");
-        });
-        hbox.getChildren().addAll(inputBox, submitButton);
 
         vbox.getChildren().add(startGame);
         vbox.getChildren().add(rollDice);
