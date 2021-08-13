@@ -17,6 +17,16 @@ public class Player {
 
     private Color color;
 
+    public Boolean getInPlay() {
+        return inPlay;
+    }
+
+    public void setInPlay(Boolean inPlay) {
+        this.inPlay = inPlay;
+    }
+
+    private Boolean inPlay;
+
     public void setColor(Constants.COLOURS colours) {
         if(colours == Constants.COLOURS.RED) {
             this.color = Color.RED;

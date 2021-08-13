@@ -4,12 +4,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import static com.company.Main.board;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameInit {
 
@@ -61,6 +61,34 @@ public class GameInit {
         return choice;
     }
 
+    public static int selectMove() {
+        Stage newWindow = new Stage();
+        newWindow.setWidth(600);
+        newWindow.setHeight(300);
+        newWindow.setTitle("Please select how many players are playing");
+        newWindow.setResizable(false);
+
+        HBox hbox = new HBox();
+        hbox.setSpacing(10);
+        Button newPiece = new Button("New Piece");
+        newPiece.setOnAction(event -> {
+            choice = 1;
+            newWindow.close();
+        });
+        Button moveCurrentPiece = new Button("Move Current Piece");
+        moveCurrentPiece.setOnAction(event -> {
+            choice = 2;
+            newWindow.close();
+        });
+        hbox.getChildren().addAll(newPiece, moveCurrentPiece);
+        hbox.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(hbox);
+        newWindow.setScene(scene);
+        newWindow.showAndWait();
+        return choice;
+    }
+
     public static void setNames(Player[] players) {
         Stage newWindow = new Stage();
         newWindow.setWidth(500);
@@ -80,6 +108,7 @@ public class GameInit {
         for(Constants.COLOURS colours : Constants.COLOURS.values()) {
             if(j < players.length) {
                 players[j].setColor(colours);
+                players[j].setInPlay(false);
                 j++;
             } else {
                 break;
