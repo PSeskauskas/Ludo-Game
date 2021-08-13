@@ -109,6 +109,7 @@ public class GameInit {
             if(j < players.length) {
                 players[j].setColor(colours);
                 players[j].setInPlay(false);
+                players[j].setAvailable(true);
                 j++;
             } else {
                 break;

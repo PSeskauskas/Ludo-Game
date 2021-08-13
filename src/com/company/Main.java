@@ -98,7 +98,7 @@ public class Main extends Application {
                         inPlay[4] = true;
                         players[count].setInPlay(true);
                     }
-                } else {
+                } else if(players[count].getAvailable()) {
                     rollDice.setDisable(true);
                     choice = GameInit.selectMove();
                     if(choice == 1) {
@@ -111,6 +111,9 @@ public class Main extends Application {
                                     circles[i].setCenterY(board[indexes[i]].getY_cord());
                                     inPlay[i] = true;
                                     players[count].setInPlay(true);
+                                    if(i == 3) {
+                                        players[count].setAvailable(false);
+                                    }
                                     break;
                                 }
                             }
@@ -123,6 +126,9 @@ public class Main extends Application {
                                     circles[i].setCenterY(board[indexes[i]].getY_cord());
                                     inPlay[i] = true;
                                     players[count].setInPlay(true);
+                                    if(i == 11) {
+                                        players[count].setAvailable(false);
+                                    }
                                     break;
                                 }
                             }
@@ -135,6 +141,9 @@ public class Main extends Application {
                                     circles[i].setCenterY(board[indexes[i]].getY_cord());
                                     inPlay[i] = true;
                                     players[count].setInPlay(true);
+                                    if(i == 15) {
+                                        players[count].setAvailable(false);
+                                    }
                                     break;
                                 }
                             }
@@ -147,6 +156,9 @@ public class Main extends Application {
                                     circles[i].setCenterY(board[indexes[i]].getY_cord());
                                     inPlay[i] = true;
                                     players[count].setInPlay(true);
+                                    if(i == 7) {
+                                        players[count].setAvailable(false);
+                                    }
                                     break;
                                 }
                             }

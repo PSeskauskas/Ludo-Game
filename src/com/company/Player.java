@@ -27,6 +27,16 @@ public class Player {
 
     private Boolean inPlay;
 
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
+    }
+
+    private Boolean isAvailable;
+
     public void setColor(Constants.COLOURS colours) {
         if(colours == Constants.COLOURS.RED) {
             this.color = Color.RED;
