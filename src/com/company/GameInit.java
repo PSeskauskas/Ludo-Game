@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.company.Main.players;
+
 public class GameInit {
 
     static int choice;
@@ -65,7 +67,7 @@ public class GameInit {
         Stage newWindow = new Stage();
         newWindow.setWidth(600);
         newWindow.setHeight(300);
-        newWindow.setTitle("Please select how many players are playing");
+        newWindow.setTitle("You have rolled a 6. Please decide to bring out a new piece or move a current piece");
         newWindow.setResizable(false);
 
         HBox hbox = new HBox();
@@ -75,12 +77,22 @@ public class GameInit {
             choice = 1;
             newWindow.close();
         });
-        Button moveCurrentPiece = new Button("Move Current Piece");
-        moveCurrentPiece.setOnAction(event -> {
-            choice = 2;
-            newWindow.close();
-        });
-        hbox.getChildren().addAll(newPiece, moveCurrentPiece);
+        Button[] btnArray = new Button[players.length];
+        for(int i = 0; i < players.length; i++) {
+            if(players[i].getInPlay() == true) {
+                btnArray[i] = new Button("Move Piece " + i);
+                hbox.getChildren().addAll(btnArray[i]);
+            }
+        }
+        for(int i = 0; i < players.length; i++) {
+            if(players[i].getInPlay() == true) {
+                btnArray[i].setOnAction(event -> {
+                    choice = 2;
+                    newWindow.close();
+                });
+            }
+        }
+        hbox.getChildren().addAll(newPiece);
         hbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(hbox);
