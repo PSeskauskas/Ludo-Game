@@ -15,7 +15,7 @@ public class Player {
 
     private String name;
 
-    private Color color;
+    private Constants.COLOURS colour;
 
     public Boolean getInPlay() {
         return inPlay;
@@ -38,18 +38,10 @@ public class Player {
     private Boolean isAvailable;
 
     public void setColor(Constants.COLOURS colours) {
-        if(colours == Constants.COLOURS.RED) {
-            this.color = Color.RED;
-        } else if(colours == Constants.COLOURS.BLUE) {
-            this.color = Color.BLUE;
-        } else if(colours == Constants.COLOURS.GREEN) {
-            this.color = Color.GREEN;
-        } else if(colours == Constants.COLOURS.YELLOW) {
-            this.color = Color.YELLOW;
-        }
+        this.colour = colours;
     }
 
-    public Color getColor() {
-        return color;
+    public Constants.COLOURS getColor() {
+        return colour;
     }
 }

@@ -70,28 +70,28 @@ public class Main extends Application {
             if(res == 6) {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
                 if(!players[count].getInPlay()) {
-                    if(players[count].getColor() == Color.GREEN) {
+                    if(players[count].getColor() == Constants.COLOURS.GREEN) {
                         indexes[0] = Constants.GREEN_START_SQUARE;
                         circles[0].setCenterX(board[indexes[0]].getX_coord());
                         circles[0].setCenterY(board[indexes[0]].getY_cord());
                         inPlay[0] = true;
                         players[count].setInPlay(true);
                     }
-                    if(players[count].getColor() == Color.RED) {
+                    if(players[count].getColor() == Constants.COLOURS.RED) {
                         indexes[8] = Constants.RED_START_SQUARE;
                         circles[8].setCenterX(board[indexes[8]].getX_coord());
                         circles[8].setCenterY(board[indexes[8]].getY_cord());
                         inPlay[8] = true;
                         players[count].setInPlay(true);
                     }
-                    if(players[count].getColor() == Color.BLUE) {
+                    if(players[count].getColor() == Constants.COLOURS.BLUE) {
                         indexes[12] = Constants.BLUE_START_SQUARE;
                         circles[12].setCenterX(board[indexes[12]].getX_coord());
                         circles[12].setCenterY(board[indexes[12]].getY_cord());
                         inPlay[12] = true;
                         players[count].setInPlay(true);
                     }
-                    if(players[count].getColor() == Color.YELLOW) {
+                    if(players[count].getColor() == Constants.COLOURS.YELLOW) {
                         indexes[4] = Constants.YELLOW_START_SQUARE;
                         circles[4].setCenterX(board[indexes[4]].getX_coord());
                         circles[4].setCenterY(board[indexes[4]].getY_cord());
@@ -103,7 +103,7 @@ public class Main extends Application {
                     choice = GameInit.selectMove();
                     if(choice == 1) {
                         listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        if (players[count].getColor() == Color.GREEN) {
+                        if (players[count].getColor() == Constants.COLOURS.GREEN) {
                             for (int i = 0; i < Constants.PLAYER_PIECES; i++) {
                                 if(!inPlay[i]) {
                                     indexes[i] = Constants.GREEN_START_SQUARE;
@@ -118,7 +118,7 @@ public class Main extends Application {
                                 }
                             }
                         }
-                        if (players[count].getColor() == Color.RED) {
+                        if (players[count].getColor() == Constants.COLOURS.RED) {
                             for (int i = 8; i < Constants.PLAYER_PIECES * 3; i++) {
                                 if(!inPlay[i]) {
                                     indexes[i] = Constants.RED_START_SQUARE;
@@ -133,7 +133,7 @@ public class Main extends Application {
                                 }
                             }
                         }
-                        if (players[count].getColor() == Color.BLUE) {
+                        if (players[count].getColor() == Constants.COLOURS.BLUE) {
                             for (int i = 12; i < Constants.PLAYER_PIECES * 4; i++) {
                                 if(!inPlay[i]) {
                                     indexes[i] = Constants.BLUE_START_SQUARE;
@@ -148,7 +148,7 @@ public class Main extends Application {
                                 }
                             }
                         }
-                        if (players[count].getColor() == Color.YELLOW) {
+                        if (players[count].getColor() == Constants.COLOURS.YELLOW) {
                             for (int i = 4; i < Constants.PLAYER_PIECES * 2; i++) {
                                 if(!inPlay[i]) {
                                     indexes[i] = Constants.YELLOW_START_SQUARE;
@@ -167,7 +167,7 @@ public class Main extends Application {
                     }
                     if(choice == 2) {
                         listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        if (players[count].getColor() == Color.GREEN) {
+                        if (players[count].getColor() == Constants.COLOURS.GREEN) {
                             for (int i = 0; i < Constants.PLAYER_PIECES; i++) {
                                 if (inPlay[i]) {
                                     if (indexes[i] + res < 52) {
@@ -186,7 +186,7 @@ public class Main extends Application {
                                 }
                             }
                         }
-                        if (players[count].getColor() == Color.RED) {
+                        if (players[count].getColor() == Constants.COLOURS.RED) {
                             for (int i = 8; i < Constants.PLAYER_PIECES * 3; i++) {
                                 if (inPlay[i]) {
                                     if (indexes[i] + res < 52) {
@@ -205,7 +205,7 @@ public class Main extends Application {
                                 }
                             }
                         }
-                        if (players[count].getColor() == Color.BLUE) {
+                        if (players[count].getColor() == Constants.COLOURS.BLUE) {
                             for (int i = 12; i < Constants.PLAYER_PIECES * 4; i++) {
                                 if (inPlay[i]) {
                                     if (indexes[i] + res < 52) {
@@ -224,7 +224,7 @@ public class Main extends Application {
                                 }
                             }
                         }
-                        if (players[count].getColor() == Color.YELLOW) {
+                        if (players[count].getColor() == Constants.COLOURS.YELLOW) {
                             for (int i = 4; i < Constants.PLAYER_PIECES * 2; i++) {
                                 if (inPlay[i]) {
                                     if (indexes[i] + res < 52) {
@@ -248,7 +248,7 @@ public class Main extends Application {
                 }
             } else {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                if (players[count].getColor() == Color.GREEN) {
+                if (players[count].getColor() == Constants.COLOURS.GREEN) {
                     for (int i = 0; i < Constants.PLAYER_PIECES; i++) {
                         if (inPlay[i]) {
                             if (indexes[i] + res < 52) {
@@ -267,7 +267,7 @@ public class Main extends Application {
                         }
                     }
                 }
-                if (players[count].getColor() == Color.RED) {
+                if (players[count].getColor() == Constants.COLOURS.RED) {
                     for (int i = 8; i < Constants.PLAYER_PIECES * 3; i++) {
                         if (inPlay[i]) {
                             if (indexes[i] + res < 52) {
@@ -286,7 +286,7 @@ public class Main extends Application {
                         }
                     }
                 }
-                if (players[count].getColor() == Color.BLUE) {
+                if (players[count].getColor() == Constants.COLOURS.BLUE) {
                     for (int i = 12; i < Constants.PLAYER_PIECES * 4; i++) {
                         if (inPlay[i]) {
                             if (indexes[i] + res < 52) {
@@ -305,7 +305,7 @@ public class Main extends Application {
                         }
                     }
                 }
-                if (players[count].getColor() == Color.YELLOW) {
+                if (players[count].getColor() == Constants.COLOURS.YELLOW) {
                     for (int i = 4; i < Constants.PLAYER_PIECES * 2; i++) {
                         if (inPlay[i]) {
                             if (indexes[i] + res < 52) {
