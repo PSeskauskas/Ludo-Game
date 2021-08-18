@@ -86,8 +86,14 @@ public class GameInit {
         }
         for(int i = 0; i < players.length; i++) {
             if(players[i].getInPlay() == true) {
+                int finalI = i;
                 btnArray[i].setOnAction(event -> {
-                    choice = 2;
+                    if(finalI == 0) {
+                        choice = 2;
+                    }
+                    else if(finalI == 1) {
+                        choice = 3;
+                    }
                     newWindow.close();
                 });
             }
