@@ -77,25 +77,24 @@ public class GameInit {
             choice = 1;
             newWindow.close();
         });
-        Button[] btnArray = new Button[players.length];
+        Button[] btnArray = new Button[Constants.PLAYER_PIECES];
         for(int i = 0; i < players.length; i++) {
-            if(players[i].getInPlay() == true) {
-                btnArray[i] = new Button("Move Piece " + i);
-                hbox.getChildren().addAll(btnArray[i]);
+            for (int j = 0; j < players[i].getPiecesInPlay(); j++) {
+                btnArray[j] = new Button("Move Piece " + j);
+                hbox.getChildren().addAll(btnArray[j]);
             }
         }
         for(int i = 0; i < players.length; i++) {
-            if(players[i].getInPlay() == true) {
-                int finalI = i;
-                btnArray[i].setOnAction(event -> {
-                    if(finalI == 0) {
-                        choice = 2;
-                    }
-                    else if(finalI == 1) {
-                        choice = 3;
-                    }
-                    newWindow.close();
-                });
+            for(int j = 0; j < players[i].getPiecesInPlay(); j++) {
+                    int finalI = i;
+                    btnArray[j].setOnAction(event -> {
+                        if (finalI == 0) {
+                            choice = 2;
+                        } else if (finalI == 1) {
+                            choice = 3;
+                        }
+                        newWindow.close();
+                    });
             }
         }
         hbox.getChildren().addAll(newPiece);

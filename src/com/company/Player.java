@@ -44,4 +44,14 @@ public class Player {
     public Constants.COLOURS getColor() {
         return colour;
     }
+
+    private int piecesInPlay;
+
+    public void setPiecesInPlay(int piecesInPlay) {
+        this.piecesInPlay = piecesInPlay;
+    }
+
+    public int getPiecesInPlay() {
+        return piecesInPlay;
+    }
 }

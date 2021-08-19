@@ -76,6 +76,7 @@ public class Main extends Application {
                         circles[0].setCenterY(board[indexes[0]].getY_cord());
                         inPlay[0] = true;
                         players[count].setInPlay(true);
+                        players[count].setPiecesInPlay(1);
                     }
                     if(players[count].getColor() == Constants.COLOURS.RED) {
                         indexes[8] = Constants.RED_START_SQUARE;
@@ -83,6 +84,7 @@ public class Main extends Application {
                         circles[8].setCenterY(board[indexes[8]].getY_cord());
                         inPlay[8] = true;
                         players[count].setInPlay(true);
+                        players[count].setPiecesInPlay(1);
                     }
                     if(players[count].getColor() == Constants.COLOURS.BLUE) {
                         indexes[12] = Constants.BLUE_START_SQUARE;
@@ -90,6 +92,7 @@ public class Main extends Application {
                         circles[12].setCenterY(board[indexes[12]].getY_cord());
                         inPlay[12] = true;
                         players[count].setInPlay(true);
+                        players[count].setPiecesInPlay(1);
                     }
                     if(players[count].getColor() == Constants.COLOURS.YELLOW) {
                         indexes[4] = Constants.YELLOW_START_SQUARE;
@@ -97,6 +100,7 @@ public class Main extends Application {
                         circles[4].setCenterY(board[indexes[4]].getY_cord());
                         inPlay[4] = true;
                         players[count].setInPlay(true);
+                        players[count].setPiecesInPlay(1);
                     }
                 } else if(players[count].getAvailable()) {
                     rollDice.setDisable(true);
