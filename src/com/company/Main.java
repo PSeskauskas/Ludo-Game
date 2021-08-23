@@ -407,6 +407,86 @@ public class Main extends Application {
                         }
                         rollDice.setDisable(false);
                     }
+                    if(choice == 5) {
+                        listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
+                        if (players[count].getColor() == Constants.COLOURS.GREEN) {
+                            for (int i = 0; i < Constants.PLAYER_PIECES; i++) {
+                                if (inPlay[i+3]) {
+                                    if (indexes[i+3] + res < 52) {
+                                        indexes[i+3] += res;
+                                    } else {
+                                        while (indexes[i+3] < 52) {
+                                            indexes[i+3]++;
+                                            res--;
+                                        }
+                                        indexes[i+3] = 0;
+                                        indexes[i+3] += res;
+                                    }
+                                    circles[i+3].setCenterX(board[indexes[i+3]].getX_coord());
+                                    circles[i+3].setCenterY(board[indexes[i+3]].getY_cord());
+                                    break;
+                                }
+                            }
+                        }
+                        if (players[count].getColor() == Constants.COLOURS.RED) {
+                            for (int i = 8; i < Constants.PLAYER_PIECES * 3; i++) {
+                                if (inPlay[i+3]) {
+                                    if (indexes[i+3] + res < 52) {
+                                        indexes[i+3] += res;
+                                    } else {
+                                        while (indexes[i+3] < 52) {
+                                            indexes[i+3]++;
+                                            res--;
+                                        }
+                                        indexes[i+3] = 0;
+                                        indexes[i+3] += res;
+                                    }
+                                    circles[i+3].setCenterX(board[indexes[i+3]].getX_coord());
+                                    circles[i+3].setCenterY(board[indexes[i+3]].getY_cord());
+                                    break;
+                                }
+                            }
+                        }
+                        if (players[count].getColor() == Constants.COLOURS.BLUE) {
+                            for (int i = 12; i < Constants.PLAYER_PIECES * 4; i++) {
+                                if (inPlay[i+3]) {
+                                    if (indexes[i+3] + res < 52) {
+                                        indexes[i+3] += res;
+                                    } else {
+                                        while (indexes[i+3] < 52) {
+                                            indexes[i+3]++;
+                                            res--;
+                                        }
+                                        indexes[i+3] = 0;
+                                        indexes[i+3] += res;
+                                    }
+                                    circles[i+3].setCenterX(board[indexes[i+3]].getX_coord());
+                                    circles[i+3].setCenterY(board[indexes[i+3]].getY_cord());
+                                    break;
+                                }
+                            }
+                        }
+                        if (players[count].getColor() == Constants.COLOURS.YELLOW) {
+                            for (int i = 4; i < Constants.PLAYER_PIECES * 2; i++) {
+                                if (inPlay[i+3]) {
+                                    if (indexes[i+3] + res < 52) {
+                                        indexes[i+3] += res;
+                                    } else {
+                                        while (indexes[i+3] < 52) {
+                                            indexes[i+3]++;
+                                            res--;
+                                        }
+                                        indexes[i+3] = 0;
+                                        indexes[i+3] += res;
+                                    }
+                                    circles[i+3].setCenterX(board[indexes[i+3]].getX_coord());
+                                    circles[i+3].setCenterY(board[indexes[i+3]].getY_cord());
+                                    break;
+                                }
+                            }
+                        }
+                        rollDice.setDisable(false);
+                    }
                 }
             } else {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");

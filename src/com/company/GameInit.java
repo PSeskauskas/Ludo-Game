@@ -86,6 +86,8 @@ public class GameInit {
                     choice = 3;
                 } else if (finalI == 2) {
                     choice = 4;
+                } else if(finalI == 3) {
+                    choice = 5;
                 }
                 newWindow.close();
             });
