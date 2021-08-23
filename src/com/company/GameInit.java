@@ -63,41 +63,43 @@ public class GameInit {
         return choice;
     }
 
-    public static int selectMove() {
+    public static int selectMove(Player player) {
         Stage newWindow = new Stage();
         newWindow.setWidth(600);
         newWindow.setHeight(300);
         newWindow.setTitle("You have rolled a 6. Please decide to bring out a new piece or move a current piece");
         newWindow.setResizable(false);
-
         HBox hbox = new HBox();
         hbox.setSpacing(10);
-        Button newPiece = new Button("New Piece");
-        newPiece.setOnAction(event -> {
-            choice = 1;
-            newWindow.close();
-        });
-        Button[] btnArray = new Button[Constants.PLAYER_PIECES];
-        for(int i = 0; i < players.length; i++) {
-            for (int j = 0; j < players[i].getPiecesInPlay(); j++) {
-                btnArray[j] = new Button("Move Piece " + j);
-                hbox.getChildren().addAll(btnArray[j]);
-            }
+
+        Button[] btnArray = new Button[player.getPiecesInPlay()];
+        for(int i = 0; i < player.getPiecesInPlay(); i++) {
+            btnArray[i] = new Button("Move Piece " + (i + 1));
+            hbox.getChildren().addAll(btnArray[i]);
         }
-        for(int i = 0; i < players.length; i++) {
-            for(int j = 0; j < players[i].getPiecesInPlay(); j++) {
-                    int finalI = i;
-                    btnArray[j].setOnAction(event -> {
-                        if (finalI == 0) {
-                            choice = 2;
-                        } else if (finalI == 1) {
-                            choice = 3;
-                        }
-                        newWindow.close();
-                    });
-            }
+        for(int i = 0; i < player.getPiecesInPlay(); i++) {
+            int finalI = i;
+            btnArray[i].setOnAction(event -> {
+                if (finalI == 0) {
+                    choice = 2;
+                } else if (finalI == 1) {
+                    choice = 3;
+                } else if (finalI == 2) {
+                    choice = 4;
+                }
+                newWindow.close();
+            });
         }
-        hbox.getChildren().addAll(newPiece);
+
+        if(player.getAvailable()) {
+            Button newPiece = new Button("New Piece");
+            newPiece.setOnAction(event -> {
+                choice = 1;
+                newWindow.close();
+            });
+            hbox.getChildren().addAll(newPiece);
+        }
+
         hbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(hbox);

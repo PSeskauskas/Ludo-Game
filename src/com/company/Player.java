@@ -45,7 +45,7 @@ public class Player {
         return colour;
     }
 
-    private int piecesInPlay;
+    private int piecesInPlay = 0;
 
     public void setPiecesInPlay(int piecesInPlay) {
         this.piecesInPlay = piecesInPlay;
