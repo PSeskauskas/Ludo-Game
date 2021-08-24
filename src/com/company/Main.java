@@ -89,86 +89,22 @@ public class Main extends Application {
                         }
                         players[count].setPiecesInPlay(players[count].getPiecesInPlay() + 1);
                         rollDice.setDisable(false);
-                    }
-                    if(choice == 2) {
+                    } else {
                         listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
                         for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
-                            if (inPlay[i]) {
-                                if (indexes[i] + res < 52) {
-                                    indexes[i] += res;
+                            if (inPlay[i + (choice - 2)]) {
+                                if (indexes[i + (choice - 2)] + res < 52) {
+                                    indexes[i + (choice - 2)] += res;
                                 } else {
-                                    while (indexes[i] < 52) {
-                                        indexes[i]++;
+                                    while (indexes[i + (choice - 2)] < 52) {
+                                        indexes[i + (choice - 2)]++;
                                         res--;
                                     }
-                                    indexes[i] = 0;
-                                    indexes[i] += res;
+                                    indexes[i + (choice - 2)] = 0;
+                                    indexes[i + (choice - 2)] += res;
                                 }
-                                circles[i].setCenterX(board[indexes[i]].getX_coord());
-                                circles[i].setCenterY(board[indexes[i]].getY_cord());
-                                break;
-                            }
-                        }
-                        rollDice.setDisable(false);
-                    }
-                    if(choice == 3) {
-                        listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
-                            if (inPlay[i+1]) {
-                                if (indexes[i+1] + res < 52) {
-                                    indexes[i+1] += res;
-                                } else {
-                                    while (indexes[i+1] < 52) {
-                                        indexes[i+1]++;
-                                        res--;
-                                    }
-                                    indexes[i+1] = 0;
-                                    indexes[i+1] += res;
-                                }
-                                circles[i+1].setCenterX(board[indexes[i+1]].getX_coord());
-                                circles[i+1].setCenterY(board[indexes[i+1]].getY_cord());
-                                break;
-                            }
-                        }
-                        rollDice.setDisable(false);
-                    }
-                    if(choice == 4) {
-                        listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
-                            if (inPlay[i+2]) {
-                                if (indexes[i+2] + res < 52) {
-                                    indexes[i+2] += res;
-                                } else {
-                                    while (indexes[i+2] < 52) {
-                                        indexes[i+2]++;
-                                        res--;
-                                    }
-                                    indexes[i+2] = 0;
-                                    indexes[i+2] += res;
-                                }
-                                circles[i+2].setCenterX(board[indexes[i+2]].getX_coord());
-                                circles[i+2].setCenterY(board[indexes[i+2]].getY_cord());
-                                break;
-                            }
-                        }
-                        rollDice.setDisable(false);
-                    }
-                    if(choice == 5) {
-                        listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
-                            if (inPlay[i+3]) {
-                                if (indexes[i+3] + res < 52) {
-                                    indexes[i+3] += res;
-                                } else {
-                                    while (indexes[i+3] < 52) {
-                                        indexes[i+3]++;
-                                        res--;
-                                    }
-                                    indexes[i+3] = 0;
-                                    indexes[i+3] += res;
-                                }
-                                circles[i+3].setCenterX(board[indexes[i+3]].getX_coord());
-                                circles[i+3].setCenterY(board[indexes[i+3]].getY_cord());
+                                circles[i + (choice - 2)].setCenterX(board[indexes[i + (choice - 2)]].getX_coord());
+                                circles[i + (choice - 2)].setCenterY(board[indexes[i + (choice - 2)]].getY_cord());
                                 break;
                             }
                         }
