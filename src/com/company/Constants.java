@@ -1,7 +1,5 @@
 package com.company;
 
-import javafx.scene.paint.Paint;
-
 public class Constants {
     protected static final int  NUM_PLAYERS = 4;
 

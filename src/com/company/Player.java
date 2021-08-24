@@ -1,7 +1,5 @@
 package com.company;
 
-import javafx.scene.paint.Color;
-
 public class Player {
     public Player() {}
 

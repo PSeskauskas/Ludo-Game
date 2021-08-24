@@ -1,13 +1,9 @@
 package com.company;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-import com.sun.org.apache.bcel.internal.Const;
-import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Piece {
-    public Constants.COLOURS colour;
 
     int startingIndx;
     int currentIndx;

@@ -9,10 +9,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static com.company.Main.players;
-
 public class GameInit {
 
     static int choice;
@@ -67,7 +63,7 @@ public class GameInit {
         Stage newWindow = new Stage();
         newWindow.setWidth(600);
         newWindow.setHeight(300);
-        newWindow.setTitle("You have rolled a 6. Please decide to bring out a new piece or move a current piece");
+        newWindow.setTitle("Select a piece to move");
         newWindow.setResizable(false);
         HBox hbox = new HBox();
         hbox.setSpacing(10);
@@ -95,6 +91,7 @@ public class GameInit {
 
         if(player.getAvailable() && res == 6) {
             Button newPiece = new Button("New Piece");
+            newWindow.setTitle("A 6 has been rolled! Bring out a new piece or move a current one");
             newPiece.setOnAction(event -> {
                 choice = 1;
                 newWindow.close();

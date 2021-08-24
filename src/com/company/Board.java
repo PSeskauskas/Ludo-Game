@@ -1,11 +1,8 @@
 package com.company;
 
-import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
