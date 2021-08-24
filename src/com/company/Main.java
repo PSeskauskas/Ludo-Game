@@ -67,75 +67,50 @@ public class Main extends Application {
         count = 0;
         rollDice.setOnAction(event -> {
             int res = GameInit.gameRoll();
-            if(res == 6) {
-                listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                if(players[count].getAvailable()) {
-                    rollDice.setDisable(true);
-                    choice = GameInit.selectMove(players[count]);
-                    if(choice == 1) {
-                        listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        for(int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
-                            if(!inPlay[i]) {
-                                indexes[i] = players[count].getStartSquare();
-                                circles[i].setCenterX(board[indexes[i]].getX_coord());
-                                circles[i].setCenterY(board[indexes[i]].getY_cord());
-                                inPlay[i] = true;
-                                players[count].setInPlay(true);
-                                if(i == players[count].getFinalIndex()) {
-                                    players[count].setAvailable(false);
-                                }
-                                break;
-                            }
-                        }
-                        players[count].setPiecesInPlay(players[count].getPiecesInPlay() + 1);
-                        rollDice.setDisable(false);
-                    } else {
-                        listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
-                            if (inPlay[i + (choice - 2)]) {
-                                if (indexes[i + (choice - 2)] + res < 52) {
-                                    indexes[i + (choice - 2)] += res;
-                                } else {
-                                    while (indexes[i + (choice - 2)] < 52) {
-                                        indexes[i + (choice - 2)]++;
-                                        res--;
-                                    }
-                                    indexes[i + (choice - 2)] = 0;
-                                    indexes[i + (choice - 2)] += res;
-                                }
-                                circles[i + (choice - 2)].setCenterX(board[indexes[i + (choice - 2)]].getX_coord());
-                                circles[i + (choice - 2)].setCenterY(board[indexes[i + (choice - 2)]].getY_cord());
-                                break;
-                            }
-                        }
-                        rollDice.setDisable(false);
-                    }
-                }
-            } else {
-                listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
-                    if (inPlay[i]) {
-                        if (indexes[i] + res < 52) {
-                            indexes[i] += res;
-                        } else {
-                            while (indexes[i] < 52) {
-                                indexes[i]++;
-                                res--;
-                            }
-                            indexes[i] = 0;
-                            indexes[i] += res;
-                        }
+            listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
+            rollDice.setDisable(true);
+            choice = GameInit.selectMove(players[count], res);
+            if(choice == 1) {
+                for(int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
+                    if(!inPlay[i]) {
+                        indexes[i] = players[count].getStartSquare();
                         circles[i].setCenterX(board[indexes[i]].getX_coord());
                         circles[i].setCenterY(board[indexes[i]].getY_cord());
+                        inPlay[i] = true;
+                        players[count].setInPlay(true);
+                        if(i == players[count].getFinalIndex()) {
+                            players[count].setAvailable(false);
+                        }
                         break;
                     }
                 }
-                if (count < numPlayers && res != 6) {
-                    count++;
+                players[count].setPiecesInPlay(players[count].getPiecesInPlay() + 1);
+                rollDice.setDisable(false);
+            } else {
+                for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
+                    if (inPlay[i + (choice - 2)]) {
+                        if (indexes[i + (choice - 2)] + res < 52) {
+                            indexes[i + (choice - 2)] += res;
+                        } else {
+                            while (indexes[i + (choice - 2)] < 52) {
+                                indexes[i + (choice - 2)]++;
+                                res--;
+                            }
+                            indexes[i + (choice - 2)] = 0;
+                            indexes[i + (choice - 2)] += res;
+                        }
+                        circles[i + (choice - 2)].setCenterX(board[indexes[i + (choice - 2)]].getX_coord());
+                        circles[i + (choice - 2)].setCenterY(board[indexes[i + (choice - 2)]].getY_cord());
+                        break;
+                    }
                 }
-                if (count == numPlayers) {
-                    count = 0;
-                }
+                rollDice.setDisable(false);
+            }
+            if (count < numPlayers && res != 6) {
+                count++;
+            }
+            if (count == numPlayers) {
+                count = 0;
             }
         });
         VBox vbox = new VBox(20);

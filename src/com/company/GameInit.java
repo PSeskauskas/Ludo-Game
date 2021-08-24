@@ -63,7 +63,7 @@ public class GameInit {
         return choice;
     }
 
-    public static int selectMove(Player player) {
+    public static int selectMove(Player player, int res) {
         Stage newWindow = new Stage();
         newWindow.setWidth(600);
         newWindow.setHeight(300);
@@ -93,7 +93,7 @@ public class GameInit {
             });
         }
 
-        if(player.getAvailable()) {
+        if(player.getAvailable() && res == 6) {
             Button newPiece = new Button("New Piece");
             newPiece.setOnAction(event -> {
                 choice = 1;
