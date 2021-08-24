@@ -19,12 +19,9 @@ public class Constants {
 
     public static double [] WHITE_SQUARES_Y = new double [] {25, 78.571428, 132.1428566, 185.7142846, 239.2857126, 292.8571406, 346.4285686, 400, 453.571248, 507.142676, 560.714104, 614.285532, 667.85696, 721.428208, 775};
 
-    public static final int GREEN_START_SQUARE = 1;
+    public static int[] startIndexes = {0, 4, 8, 12};
 
-    public static final int RED_START_SQUARE = 14;
+    public static int[] finalIndexes = {3, 7, 11, 15};
 
-    public static final int BLUE_START_SQUARE = 27;
-
-    public static final int YELLOW_START_SQUARE = 40;
-
+    public static int[] startSquares = {1, 40, 14, 27};
 }

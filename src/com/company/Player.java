@@ -47,6 +47,36 @@ public class Player {
 
     private int piecesInPlay = 0;
 
+    public int getStartSquare() {
+        return startSquare;
+    }
+
+    public void setStartSquare(int startSquare) {
+        this.startSquare = startSquare;
+    }
+
+    private int startSquare;
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    private int startIndex;
+
+    public int getFinalIndex() {
+        return finalIndex;
+    }
+
+    public void setFinalIndex(int finalIndex) {
+        this.finalIndex = finalIndex;
+    }
+
+    private int finalIndex;
+
     public void setPiecesInPlay(int piecesInPlay) {
         this.piecesInPlay = piecesInPlay;
     }

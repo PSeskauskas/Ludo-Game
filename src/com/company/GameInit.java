@@ -131,6 +131,9 @@ public class GameInit {
                 players[j].setColor(colours);
                 players[j].setInPlay(false);
                 players[j].setAvailable(true);
+                players[j].setStartSquare(Constants.startSquares[j]);
+                players[j].setStartIndex(Constants.startIndexes[j]);
+                players[j].setFinalIndex(Constants.finalIndexes[j]);
                 j++;
             } else {
                 break;
