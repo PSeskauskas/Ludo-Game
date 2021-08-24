@@ -74,14 +74,14 @@ public class Main extends Application {
                     choice = GameInit.selectMove(players[count]);
                     if(choice == 1) {
                         listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                        for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
+                        for(int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
                             if(!inPlay[i]) {
                                 indexes[i] = players[count].getStartSquare();
                                 circles[i].setCenterX(board[indexes[i]].getX_coord());
                                 circles[i].setCenterY(board[indexes[i]].getY_cord());
                                 inPlay[i] = true;
                                 players[count].setInPlay(true);
-                                if(i == Constants.finalIndexes[count]) {
+                                if(i == players[count].getFinalIndex()) {
                                     players[count].setAvailable(false);
                                 }
                                 break;
