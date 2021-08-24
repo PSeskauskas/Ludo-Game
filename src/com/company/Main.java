@@ -69,37 +69,7 @@ public class Main extends Application {
             int res = GameInit.gameRoll();
             if(res == 6) {
                 listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
-                if(!players[count].getInPlay()) {
-                    if(players[count].getColor() == Constants.COLOURS.GREEN) {
-                        indexes[0] = Constants.GREEN_START_SQUARE;
-                        circles[0].setCenterX(board[indexes[0]].getX_coord());
-                        circles[0].setCenterY(board[indexes[0]].getY_cord());
-                        inPlay[0] = true;
-                        players[count].setInPlay(true);
-                    }
-                    if(players[count].getColor() == Constants.COLOURS.RED) {
-                        indexes[8] = Constants.RED_START_SQUARE;
-                        circles[8].setCenterX(board[indexes[8]].getX_coord());
-                        circles[8].setCenterY(board[indexes[8]].getY_cord());
-                        inPlay[8] = true;
-                        players[count].setInPlay(true);
-                    }
-                    if(players[count].getColor() == Constants.COLOURS.BLUE) {
-                        indexes[12] = Constants.BLUE_START_SQUARE;
-                        circles[12].setCenterX(board[indexes[12]].getX_coord());
-                        circles[12].setCenterY(board[indexes[12]].getY_cord());
-                        inPlay[12] = true;
-                        players[count].setInPlay(true);
-                    }
-                    if(players[count].getColor() == Constants.COLOURS.YELLOW) {
-                        indexes[4] = Constants.YELLOW_START_SQUARE;
-                        circles[4].setCenterX(board[indexes[4]].getX_coord());
-                        circles[4].setCenterY(board[indexes[4]].getY_cord());
-                        inPlay[4] = true;
-                        players[count].setInPlay(true);
-                    }
-                    players[count].setPiecesInPlay(1);
-                } else if(players[count].getAvailable()) {
+                if(players[count].getAvailable()) {
                     rollDice.setDisable(true);
                     choice = GameInit.selectMove(players[count]);
                     if(choice == 1) {
