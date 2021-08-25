@@ -5,7 +5,7 @@ public class Constants {
 
     public static final int MAIN_SQUARES = 52;
 
-    public static final int NUM_MID_SQUARES =7;
+    public static final int NUM_MID_SQUARES = 6;
 
     public enum COLOURS {GREEN, YELLOW, RED, BLUE}
 
@@ -16,6 +16,14 @@ public class Constants {
     public static double [] WHITE_SQUARES_X = new double[] {25, 78.571428, 132.1428566, 185.7142846, 239.2857126, 292.8571406, 346.4285686, 400, 453.571248, 507.142676, 560.714104, 614.285532, 667.85696, 721.428208, 775};
 
     public static double [] WHITE_SQUARES_Y = new double [] {25, 78.571428, 132.1428566, 185.7142846, 239.2857126, 292.8571406, 346.4285686, 400, 453.571248, 507.142676, 560.714104, 614.285532, 667.85696, 721.428208, 775};
+
+    public static double [][] GREEN_MID_SQUARES = new double[][] {{78.571428, 400}, {132.1428566, 400}, {185.7142846, 400}, {239.2857126, 400}, {292.8571406, 400}, {346.4285686, 400}};
+
+    public static double [][] YELLOW_MID_SQUARES = new double[][] {{400, 453.571248}, {400, 507.142676}, {400, 560.714104}, {400, 614.285532}, {400, 667.85696}, {400, 721.4282080}};
+
+    public static double [][] RED_MID_SQUARES = new double[][] {{400, 78.571428}, {400, 132.1428566}, {400, 185.7142846}, {400, 239.2857126}, {400, 292.8571406}, {400, 346.4285686}};
+
+    public static double [][] BLUE_MID_SQUARES = new double[][] {{453.571248, 400}, {507.142676, 400}, {560.714104, 400}, {614.285532, 400}, {667.85696, 400}, {721.428208, 400}};
 
     public static int[] startIndexes = {0, 4, 8, 12};
 
