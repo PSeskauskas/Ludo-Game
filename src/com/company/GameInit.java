@@ -31,6 +31,36 @@ public class GameInit {
         }
     }
 
+    public static void initializeMiddleSquares(int numPlayers, Square[] greenSquares, Square[] redSquares, Square[] blueSquares, Square[] yellowSquares) {
+        for(int i = 0; i < numPlayers; i++) {
+            for(int j = 0; j < Constants.NUM_MID_SQUARES; j++) {
+                double x, y;
+                Square s;
+                if(i == 0) {
+                    x = Constants.GREEN_MID_SQUARES[j][0];
+                    y = Constants.GREEN_MID_SQUARES[j][1];
+                    s = new Square(j, x, y);
+                    greenSquares[j] = s;
+                } else if(i == 1) {
+                    x = Constants.RED_MID_SQUARES[j][0];
+                    y = Constants.RED_MID_SQUARES[j][1];
+                    s = new Square(j, x, y);
+                    redSquares[j] = s;
+                } else if(i == 2) {
+                    x = Constants.BLUE_MID_SQUARES[j][0];
+                    y = Constants.BLUE_MID_SQUARES[j][1];
+                    s = new Square(j, x, y);
+                    blueSquares[j] = s;
+                } else if(i == 3) {
+                    x = Constants.YELLOW_MID_SQUARES[j][0];
+                    y = Constants.YELLOW_MID_SQUARES[j][1];
+                    s = new Square(j, x, y);
+                    yellowSquares[j] = s;
+                }
+            }
+        }
+    }
+
     public static int selectPlayers() {
         Stage newWindow = new Stage();
         newWindow.setWidth(300);

@@ -22,6 +22,10 @@ public class Main extends Application {
     static Player[] players;
     static int count;
     static Square[] board;
+    static Square[] greenSquares;
+    static Square[] redSquares;
+    static Square[] blueSquares;
+    static Square[] yellowSquares;
     static Circle[] circles = new Circle[16];
     static Boolean[] inPlay = new Boolean[16];
     static int[] indexes = new int[circles.length];
@@ -59,6 +63,7 @@ public class Main extends Application {
             GameInit.setNames(players);
             startGame.setVisible(false);
             GameInit.initializePieces(root, numPlayers, circles);
+            GameInit.initializeMiddleSquares(numPlayers, greenSquares, redSquares, blueSquares, yellowSquares);
             Dice.rollDice(diceRolls, players, listView);
             listView.getItems().add(players[0].getName() + " will go first");
             rollDice.setDisable(false);
