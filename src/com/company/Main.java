@@ -22,10 +22,10 @@ public class Main extends Application {
     static Player[] players;
     static int count;
     static Square[] board;
-    static Square[] greenSquares;
-    static Square[] redSquares;
-    static Square[] blueSquares;
-    static Square[] yellowSquares;
+    static Square[] greenSquares = new Square[6];
+    static Square[] redSquares = new Square[6];
+    static Square[] blueSquares = new Square[6];
+    static Square[] yellowSquares = new Square[6];
     static Circle[] circles = new Circle[16];
     static Boolean[] inPlay = new Boolean[16];
     static int[] indexes = new int[circles.length];
