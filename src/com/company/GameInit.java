@@ -42,20 +42,20 @@ public class GameInit {
                     s = new Square(j, x, y);
                     greenSquares[j] = s;
                 } else if(i == 1) {
-                    x = Constants.RED_MID_SQUARES[j][0];
-                    y = Constants.RED_MID_SQUARES[j][1];
-                    s = new Square(j, x, y);
-                    redSquares[j] = s;
-                } else if(i == 2) {
-                    x = Constants.BLUE_MID_SQUARES[j][0];
-                    y = Constants.BLUE_MID_SQUARES[j][1];
-                    s = new Square(j, x, y);
-                    blueSquares[j] = s;
-                } else if(i == 3) {
                     x = Constants.YELLOW_MID_SQUARES[j][0];
                     y = Constants.YELLOW_MID_SQUARES[j][1];
                     s = new Square(j, x, y);
                     yellowSquares[j] = s;
+                } else if(i == 2) {
+                    x = Constants.RED_MID_SQUARES[j][0];
+                    y = Constants.RED_MID_SQUARES[j][1];
+                    s = new Square(j, x, y);
+                    redSquares[j] = s;
+                } else if(i == 3) {
+                    x = Constants.BLUE_MID_SQUARES[j][0];
+                    y = Constants.BLUE_MID_SQUARES[j][1];
+                    s = new Square(j, x, y);
+                    blueSquares[j] = s;
                 }
             }
         }
@@ -65,9 +65,8 @@ public class GameInit {
         Stage newWindow = new Stage();
         newWindow.setWidth(300);
         newWindow.setHeight(300);
-        newWindow.setTitle("Please select how many players are playing");
         newWindow.setResizable(false);
-        Label label = new Label("Select here");
+        Label label = new Label("Select number of players here");
 
         ComboBox select = new ComboBox();
         select.getItems().add(2);
@@ -145,6 +144,7 @@ public class GameInit {
         newWindow.setResizable(false);
 
         VBox layout = new VBox();
+        layout.setSpacing(10);
         TextField[] textFields = new TextField[players.length];
         for (int i = 0; i < textFields.length; i++) {
             Label label = new Label("Player " + (i + 1) + " Name");
@@ -198,8 +198,8 @@ public class GameInit {
     }
 
     public static int gameRoll() {
-            return (int) (Math.random()*6+1);
-        }
+        return (int) (Math.random()*6+1);
+    }
 
     public static Square[] initializeSquares() {
         Square[] board = new Square[52];
@@ -284,5 +284,3 @@ public class GameInit {
         return board;
     }
 }
-
-
