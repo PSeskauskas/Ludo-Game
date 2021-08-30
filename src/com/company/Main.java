@@ -70,6 +70,19 @@ public class Main extends Application {
         });
 
         count = 0;
+
+        for(int i = 0; i < numPlayers; i++) {
+            if(players[i].getColor() == Constants.COLOURS.GREEN) {
+                players[i].setMiddleSquares(greenSquares);
+            } else if(players[i].getColor() == Constants.COLOURS.RED) {
+                players[i].setMiddleSquares(redSquares);
+            } else if(players[i].getColor() == Constants.COLOURS.YELLOW) {
+                players[i].setMiddleSquares(yellowSquares);
+            } else if(players[i].getColor() == Constants.COLOURS.BLUE) {
+                players[i].setMiddleSquares(blueSquares);
+            }
+        }
+
         rollDice.setOnAction(event -> {
             int res = GameInit.gameRoll();
             listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");

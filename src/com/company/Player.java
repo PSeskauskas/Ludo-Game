@@ -82,4 +82,14 @@ public class Player {
     public int getPiecesInPlay() {
         return piecesInPlay;
     }
+
+    private Square[] middleSquares;
+
+    public Square[] getMiddleSquares() {
+        return middleSquares;
+    }
+
+    public void setMiddleSquares(Square[] middleSquares) {
+        this.middleSquares = middleSquares;
+    }
 }
