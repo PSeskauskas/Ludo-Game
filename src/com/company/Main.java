@@ -22,12 +22,10 @@ public class Main extends Application {
     static Player[] players;
     static int count;
     static Square[] board;
-    static Square[] greenSquares = new Square[6];
-    static Square[] redSquares = new Square[6];
-    static Square[] blueSquares = new Square[6];
-    static Square[] yellowSquares = new Square[6];
     static Circle[] circles = new Circle[16];
     static Boolean[] inPlay = new Boolean[16];
+    static Boolean[] lapComplete = new Boolean[16];
+    static int[] squaresPassed = new int[circles.length];
     static int[] indexes = new int[circles.length];
     static int choice;
 
@@ -46,6 +44,8 @@ public class Main extends Application {
         for(int i = 0; i < 16; i++) {
             inPlay[i] = false;
             indexes[i] = -1;
+            lapComplete[i] = false;
+            squaresPassed[i] = 0;
         }
 
         ListView listView = new ListView();
@@ -63,25 +63,13 @@ public class Main extends Application {
             GameInit.setNames(players);
             startGame.setVisible(false);
             GameInit.initializePieces(root, numPlayers, circles);
-            GameInit.initializeMiddleSquares(numPlayers, greenSquares, redSquares, blueSquares, yellowSquares);
+            GameInit.initializeMiddleSquares(players, numPlayers);
             Dice.rollDice(diceRolls, players, listView);
             listView.getItems().add(players[0].getName() + " will go first");
             rollDice.setDisable(false);
         });
 
         count = 0;
-
-        for(int i = 0; i < numPlayers; i++) {
-            if(players[i].getColor() == Constants.COLOURS.GREEN) {
-                players[i].setMiddleSquares(greenSquares);
-            } else if(players[i].getColor() == Constants.COLOURS.RED) {
-                players[i].setMiddleSquares(redSquares);
-            } else if(players[i].getColor() == Constants.COLOURS.YELLOW) {
-                players[i].setMiddleSquares(yellowSquares);
-            } else if(players[i].getColor() == Constants.COLOURS.BLUE) {
-                players[i].setMiddleSquares(blueSquares);
-            }
-        }
 
         rollDice.setOnAction(event -> {
             int res = GameInit.gameRoll();
@@ -96,6 +84,7 @@ public class Main extends Application {
                             circles[i].setCenterX(board[indexes[i]].getX_coord());
                             circles[i].setCenterY(board[indexes[i]].getY_cord());
                             inPlay[i] = true;
+                            squaresPassed[i] = 0;
                             players[count].setInPlay(true);
                             if (i == players[count].getFinalIndex()) {
                                 players[count].setAvailable(false);
@@ -108,18 +97,40 @@ public class Main extends Application {
                 } else {
                     for (int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
                         if (inPlay[i + (choice - 2)]) {
-                            if (indexes[i + (choice - 2)] + res < 52) {
-                                indexes[i + (choice - 2)] += res;
-                            } else {
-                                while (indexes[i + (choice - 2)] < 52) {
-                                    indexes[i + (choice - 2)]++;
-                                    res--;
+                            if(lapComplete[i + (choice - 2)]) {
+                                if(indexes[i + (choice - 2)] + res < 6) {
+                                    indexes[i + (choice - 2)] += res;
+                                } else {
+                                    int temp = indexes[i + (choice - 2)] + res;
+                                    indexes[i + (choice - 2)] = 5 - (temp - 5);
                                 }
-                                indexes[i + (choice - 2)] = 0;
-                                indexes[i + (choice - 2)] += res;
+                                circles[i + (choice - 2)].setCenterX(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getX_coord());
+                                circles[i + (choice - 2)].setCenterY(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getY_cord());
+                            } else {
+                                if (squaresPassed[i + (choice - 2)] + res >= 51) {
+                                    indexes[i + (choice - 2)] = (squaresPassed[i + (choice - 2)] + res) - 51;
+                                    squaresPassed[i + (choice - 2)] += res;
+                                    lapComplete[i + (choice - 2)] = true;
+                                    circles[i + (choice - 2)].setCenterX(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getX_coord());
+                                    circles[i + (choice - 2)].setCenterY(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getY_cord());
+                                } else if (indexes[i + (choice - 2)] + res < 52 && !lapComplete[i + (choice - 2)]) {
+                                    indexes[i + (choice - 2)] += res;
+                                    squaresPassed[i + (choice - 2)] += res;
+                                    circles[i + (choice - 2)].setCenterX(board[indexes[i + (choice - 2)]].getX_coord());
+                                    circles[i + (choice - 2)].setCenterY(board[indexes[i + (choice - 2)]].getY_cord());
+                                } else if (indexes[i + (choice - 2)] + res >= 52 && !lapComplete[i + (choice - 2)]) {
+                                    while (indexes[i + (choice - 2)] < 52) {
+                                        indexes[i + (choice - 2)]++;
+                                        squaresPassed[i + (choice - 2)]++;
+                                        res--;
+                                    }
+                                    indexes[i + (choice - 2)] = 0;
+                                    indexes[i + (choice - 2)] += res;
+                                    squaresPassed[i + (choice - 2)] += res;
+                                    circles[i + (choice - 2)].setCenterX(board[indexes[i + (choice - 2)]].getX_coord());
+                                    circles[i + (choice - 2)].setCenterY(board[indexes[i + (choice - 2)]].getY_cord());
+                                }
                             }
-                            circles[i + (choice - 2)].setCenterX(board[indexes[i + (choice - 2)]].getX_coord());
-                            circles[i + (choice - 2)].setCenterY(board[indexes[i + (choice - 2)]].getY_cord());
                             break;
                         }
                     }
@@ -145,7 +156,6 @@ public class Main extends Application {
         vbox.setLayoutX(800);
         listView.setMinWidth(400);
         listView.setMinHeight(400);
-
 
         vbox.getChildren().add(startGame);
         vbox.getChildren().add(rollDice);

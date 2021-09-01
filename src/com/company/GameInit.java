@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+
 public class GameInit {
 
     static int choice;
@@ -31,32 +33,45 @@ public class GameInit {
         }
     }
 
-    public static void initializeMiddleSquares(int numPlayers, Square[] greenSquares, Square[] redSquares, Square[] blueSquares, Square[] yellowSquares) {
+    public static void initializeMiddleSquares(Player[] players, int numPlayers) {
+        Square[] greenSquares = new Square[6];
+        Square[] redSquares = new Square[6];
+        Square[] blueSquares = new Square[6];
+        Square[] yellowSquares = new Square[6];
         for(int i = 0; i < numPlayers; i++) {
-            for(int j = 0; j < Constants.NUM_MID_SQUARES; j++) {
+            for (int j = 0; j < Constants.NUM_MID_SQUARES; j++) {
                 double x, y;
                 Square s;
-                if(i == 0) {
+                if (i == 0) {
                     x = Constants.GREEN_MID_SQUARES[j][0];
                     y = Constants.GREEN_MID_SQUARES[j][1];
                     s = new Square(j, x, y);
                     greenSquares[j] = s;
-                } else if(i == 1) {
+                } else if (i == 1) {
                     x = Constants.YELLOW_MID_SQUARES[j][0];
                     y = Constants.YELLOW_MID_SQUARES[j][1];
                     s = new Square(j, x, y);
                     yellowSquares[j] = s;
-                } else if(i == 2) {
+                } else if (i == 2) {
                     x = Constants.RED_MID_SQUARES[j][0];
                     y = Constants.RED_MID_SQUARES[j][1];
                     s = new Square(j, x, y);
                     redSquares[j] = s;
-                } else if(i == 3) {
+                } else if (i == 3) {
                     x = Constants.BLUE_MID_SQUARES[j][0];
                     y = Constants.BLUE_MID_SQUARES[j][1];
                     s = new Square(j, x, y);
                     blueSquares[j] = s;
                 }
+            }
+            if (players[i].getColor() == Constants.COLOURS.GREEN) {
+                players[i].setMiddleSquares(greenSquares);
+            } else if (players[i].getColor() == Constants.COLOURS.RED) {
+                players[i].setMiddleSquares(redSquares);
+            } else if (players[i].getColor() == Constants.COLOURS.YELLOW) {
+                players[i].setMiddleSquares(yellowSquares);
+            } else if (players[i].getColor() == Constants.COLOURS.BLUE) {
+                players[i].setMiddleSquares(blueSquares);
             }
         }
     }
