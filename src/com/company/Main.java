@@ -25,6 +25,7 @@ public class Main extends Application {
     static Circle[] circles = new Circle[16];
     static Boolean[] inPlay = new Boolean[16];
     static Boolean[] lapComplete = new Boolean[16];
+    static Boolean[] centerPiece = new Boolean[16];
     static int[] squaresPassed = new int[circles.length];
     static int[] indexes = new int[circles.length];
     static int choice;
@@ -46,6 +47,7 @@ public class Main extends Application {
             indexes[i] = -1;
             lapComplete[i] = false;
             squaresPassed[i] = 0;
+            centerPiece[i] = false;
         }
 
         ListView listView = new ListView();
@@ -79,7 +81,7 @@ public class Main extends Application {
                 choice = GameInit.selectMove(players[count], res);
                 if (choice == 1) {
                     for (int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
-                        if (!inPlay[i]) {
+                        if (!inPlay[i] && !centerPiece[i]) {
                             indexes[i] = players[count].getStartSquare();
                             circles[i].setCenterX(board[indexes[i]].getX_coord());
                             circles[i].setCenterY(board[indexes[i]].getY_cord());
@@ -97,12 +99,16 @@ public class Main extends Application {
                 } else {
                     for (int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
                         if (inPlay[i + (choice - 2)]) {
-                            if(lapComplete[i + (choice - 2)]) {
+                            if(lapComplete[i + (choice - 2)] && !centerPiece[i + (choice - 2)]) {
                                 if(indexes[i + (choice - 2)] + res < 6) {
                                     indexes[i + (choice - 2)] += res;
                                 } else {
                                     int temp = indexes[i + (choice - 2)] + res;
                                     indexes[i + (choice - 2)] = 5 - (temp - 5);
+                                }
+                                if(indexes[i + (choice - 2)] == 5) {
+                                    centerPiece[i + (choice - 2)] = true;
+                                    inPlay[i + (choice - 2)] = false;
                                 }
                                 circles[i + (choice - 2)].setCenterX(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getX_coord());
                                 circles[i + (choice - 2)].setCenterY(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getY_cord());
@@ -135,6 +141,16 @@ public class Main extends Application {
                         }
                     }
                     rollDice.setDisable(false);
+                    boolean piece = false;
+                    for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
+                        if (inPlay[i]) {
+                            piece = true;
+                            break;
+                        }
+                    }
+                    if(!piece) {
+                        players[count].setInPlay(false);
+                    }
                 }
             }
             if (count < numPlayers && res != 6) {
