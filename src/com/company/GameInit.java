@@ -118,8 +118,6 @@ public class GameInit {
             playerPieces[j] = centerPiece[i];
             j++;
         }
-        System.out.println(Arrays.toString(centerPiece));
-        System.out.println(Arrays.toString(playerPieces));
 
         Button[] btnArray = new Button[player.getPiecesInPlay()];
         for(int i = 0; i < player.getPiecesInPlay(); i++) {
