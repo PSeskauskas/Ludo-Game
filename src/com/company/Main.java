@@ -144,7 +144,7 @@ public class Main extends Application {
                     }
                     rollDice.setDisable(false);
                     boolean piece = false;
-                    for(int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
+                    for(int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
                         if (inPlay[i]) {
                             piece = true;
                             break;
