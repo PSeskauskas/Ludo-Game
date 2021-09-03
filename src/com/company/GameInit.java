@@ -176,6 +176,7 @@ public class GameInit {
                 players[j].setStartSquare(Constants.startSquares[j]);
                 players[j].setStartIndex(Constants.startIndexes[j]);
                 players[j].setFinalIndex(Constants.finalIndexes[j]);
+                players[j].setCenterPieces(0);
                 j++;
             } else {
                 break;

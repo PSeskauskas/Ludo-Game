@@ -92,4 +92,14 @@ public class Player {
     public void setMiddleSquares(Square[] middleSquares) {
         this.middleSquares = middleSquares;
     }
+
+    private int centerPieces;
+
+    public int getCenterPieces() {
+        return centerPieces;
+    }
+
+    public void setCenterPieces(int centerPieces) {
+        this.centerPieces = centerPieces;
+    }
 }

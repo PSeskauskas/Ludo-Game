@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -108,6 +109,7 @@ public class Main extends Application {
                                 }
                                 if(indexes[i + (choice - 2)] == 5) {
                                     centerPiece[i + (choice - 2)] = true;
+                                    players[count].setCenterPieces(players[count].getCenterPieces() + 1);
                                     inPlay[i + (choice - 2)] = false;
                                 }
                                 circles[i + (choice - 2)].setCenterX(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getX_coord());
@@ -151,6 +153,20 @@ public class Main extends Application {
                     if(!piece) {
                         players[count].setInPlay(false);
                     }
+                }
+                if(players[count].getCenterPieces() == 4) {
+                    rollDice.setDisable(true);
+                    Stage winnerWindow = new Stage();
+                    winnerWindow.setResizable(false);
+                    winnerWindow.setTitle("WE HAVE A WINNER!!!!");
+                    winnerWindow.setWidth(700);
+                    winnerWindow.setHeight(700);
+                    Label label = new Label(players[count].getName() + " has won the game!!!");
+                    VBox layout = new VBox();
+                    layout.getChildren().addAll(label);
+                    layout.setAlignment(Pos.CENTER);
+                    Scene scene = new Scene(layout);
+                    winnerWindow.setScene(scene);
                 }
             }
             if (count < numPlayers && res != 6) {
