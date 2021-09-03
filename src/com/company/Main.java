@@ -167,6 +167,7 @@ public class Main extends Application {
                     layout.setAlignment(Pos.CENTER);
                     Scene scene = new Scene(layout);
                     winnerWindow.setScene(scene);
+                    winnerWindow.show();
                 }
             }
             if (count < numPlayers && res != 6) {
