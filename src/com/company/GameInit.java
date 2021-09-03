@@ -103,7 +103,7 @@ public class GameInit {
         return choice;
     }
 
-    public static int selectMove(Player player, int res) {
+    public static int selectMove(Player player, Boolean[] centerPiece, int res) {
         Stage newWindow = new Stage();
         newWindow.setWidth(600);
         newWindow.setHeight(300);
@@ -112,25 +112,34 @@ public class GameInit {
         HBox hbox = new HBox();
         hbox.setSpacing(10);
 
+        Boolean[] playerPieces = {false, false, false, false};
+        int j = 0;
+        for(int i = player.getStartIndex(); i < player.getFinalIndex(); i++) {
+            playerPieces[j] = centerPiece[i];
+            j++;
+        }
+        System.out.println(Arrays.toString(centerPiece));
+        System.out.println(Arrays.toString(playerPieces));
+
         Button[] btnArray = new Button[player.getPiecesInPlay()];
         for(int i = 0; i < player.getPiecesInPlay(); i++) {
-            btnArray[i] = new Button("Move Piece " + (i + 1));
-            hbox.getChildren().addAll(btnArray[i]);
-        }
-        for(int i = 0; i < player.getPiecesInPlay(); i++) {
-            int finalI = i;
-            btnArray[i].setOnAction(event -> {
-                if (finalI == 0) {
-                    choice = 2;
-                } else if (finalI == 1) {
-                    choice = 3;
-                } else if (finalI == 2) {
-                    choice = 4;
-                } else if(finalI == 3) {
-                    choice = 5;
-                }
-                newWindow.close();
-            });
+            if(!playerPieces[i]) {
+                btnArray[i] = new Button("Move Piece " + (i + 1));
+                hbox.getChildren().addAll(btnArray[i]);
+                int finalI = i;
+                btnArray[i].setOnAction(event -> {
+                    if (finalI == 0) {
+                        choice = 2;
+                    } else if (finalI == 1) {
+                        choice = 3;
+                    } else if (finalI == 2) {
+                        choice = 4;
+                    } else if(finalI == 3) {
+                        choice = 5;
+                    }
+                    newWindow.close();
+                });
+            }
         }
 
         if(player.getAvailable() && res == 6) {

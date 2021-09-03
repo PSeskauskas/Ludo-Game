@@ -79,7 +79,7 @@ public class Main extends Application {
             listView.getItems().add(players[count].getName() + " has rolled a " + res + ".");
             if(players[count].getInPlay() || res == 6) {
                 rollDice.setDisable(true);
-                choice = GameInit.selectMove(players[count], res);
+                choice = GameInit.selectMove(players[count], centerPiece, res);
                 if (choice == 1) {
                     for (int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
                         if (!inPlay[i] && !centerPiece[i]) {
