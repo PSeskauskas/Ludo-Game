@@ -154,6 +154,20 @@ public class Main extends Application {
                         players[count].setInPlay(false);
                     }
                 }
+                if(players[count].getInPlay()) {
+                    for (int i = 0; i < indexes.length - 1; i++) {
+                        for (int j = i + 1; j < indexes.length; j++) {
+                            if (indexes[i] == -1 || indexes[j] == -1 || indexes[i] == 1 || indexes[j] == 1 || indexes[i] == 14 || indexes[j] == 14 || indexes[i] == 27 || indexes[j] == 27 || indexes[i] == 40 || indexes[j] == 40) {
+                                break;
+                            }
+                            else if (indexes[i] == indexes[j]) {
+                                circles[i].setCenterX(board[players[count].getStartSquare()].getX_coord());
+                                circles[i].setCenterY(board[players[count].getStartSquare()].getY_cord());
+                                indexes[i] = players[count].getStartSquare();
+                            }
+                        }
+                    }
+                }
                 if(players[count].getCenterPieces() == 4) {
                     rollDice.setDisable(true);
                     Stage winnerWindow = new Stage();
