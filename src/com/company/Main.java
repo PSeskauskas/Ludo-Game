@@ -160,7 +160,7 @@ public class Main extends Application {
                             if (j < players[count].getStartSquare() || j > players[count].getFinalIndex()) {
                                 if (indexes[i] == -1 || indexes[j] == -1 || indexes[i] == 1 || indexes[j] == 1 || indexes[i] == 14 || indexes[j] == 14 || indexes[i] == 27 || indexes[j] == 27 || indexes[i] == 40 || indexes[j] == 40) {
                                     break;
-                                } else if (i != j && (indexes[i] == indexes[j]) && (!centerPiece[i] && !centerPiece[j])) {
+                                } else if (i != j && (indexes[i] == indexes[j]) && (!lapComplete[i] && !lapComplete[j])) {
                                     if(circles[j].getFill() == Color.DARKRED) {
                                         indexes[j] = 14;
                                     } else if(circles[j].getFill() == Color.CYAN) {
