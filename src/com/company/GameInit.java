@@ -225,7 +225,7 @@ public class GameInit {
     }
 
     public static Square[] initializeSquares() {
-        Square[] board = new Square[52];
+        Square[] board = new Square[Constants.MAIN_SQUARES];
         int i = 0;
         double x, y;
         Square s;

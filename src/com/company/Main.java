@@ -161,20 +161,16 @@ public class Main extends Application {
                                 if (indexes[i] == -1 || indexes[j] == -1 || indexes[i] == 1 || indexes[j] == 1 || indexes[i] == 14 || indexes[j] == 14 || indexes[i] == 27 || indexes[j] == 27 || indexes[i] == 40 || indexes[j] == 40) {
                                     break;
                                 } else if (i != j && (indexes[i] == indexes[j]) && (!centerPiece[i] && !centerPiece[j])) {
-                                    System.out.println(true);
                                     if(circles[j].getFill() == Color.DARKRED) {
                                         indexes[j] = 14;
-                                        System.out.println("Red");
                                     } else if(circles[j].getFill() == Color.CYAN) {
                                         indexes[j] = 27;
-                                        System.out.println("Blue");
                                     } else if(circles[j].getFill() == Color.GREEN) {
                                         indexes[j] = 1;
-                                        System.out.println("Green");
                                     } else if(circles[j].getFill() == Color.ORANGE) {
                                         indexes[j] = 40;
-                                        System.out.println("Yellow");
                                     }
+                                    squaresPassed[j] = 0;
                                     circles[j].setCenterX(board[indexes[j]].getX_coord());
                                     circles[j].setCenterY(board[indexes[j]].getY_cord());
                                 }

@@ -30,8 +30,6 @@ public class Piece {
         }
     }
 
-    Boolean lapComplete;
-
     public static Circle loadPiece(double x, double y, int radius, Constants.COLOURS color) {
         Circle circle = new Circle(x, y, radius);
         if(color == Constants.COLOURS.GREEN) {
