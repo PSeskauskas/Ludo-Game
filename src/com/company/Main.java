@@ -98,7 +98,7 @@ public class Main extends Application {
                     players[count].setPiecesInPlay(players[count].getPiecesInPlay() + 1);
                     rollDice.setDisable(false);
                 } else {
-                    for (int i = players[count].getStartIndex(); i < players[count].getFinalIndex(); i++) {
+                    for (int i = players[count].getStartIndex(); i <= players[count].getFinalIndex(); i++) {
                         if (inPlay[i + (choice - 2)]) {
                             if(lapComplete[i + (choice - 2)] && !centerPiece[i + (choice - 2)]) {
                                 if(indexes[i + (choice - 2)] + res < 6) {
@@ -119,6 +119,9 @@ public class Main extends Application {
                                     indexes[i + (choice - 2)] = (squaresPassed[i + (choice - 2)] + res) - 51;
                                     squaresPassed[i + (choice - 2)] += res;
                                     lapComplete[i + (choice - 2)] = true;
+                                    if(squaresPassed[i + (choice - 2)] == 56) {
+                                        centerPiece[i + (choice - 2)] = true;
+                                    }
                                     circles[i + (choice - 2)].setCenterX(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getX_coord());
                                     circles[i + (choice - 2)].setCenterY(players[count].getMiddleSquares()[indexes[i + (choice - 2)]].getY_cord());
                                 } else if (indexes[i + (choice - 2)] + res < 52 && !lapComplete[i + (choice - 2)]) {
